@@ -12,12 +12,9 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "apartments", primary_key: "apartment_id", force: :cascade do |t|
+  create_table "apartments", force: :cascade do |t|
     t.text "name", null: false
     t.integer "price", null: false
-    t.text "image"
-    t.text "description"
-    t.text "address"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -26,11 +23,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "comments"
   end
 
-  create_table "users", primary_key: "user_id", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.text "username", null: false
     t.text "password", null: false
   end
 
-  add_foreign_key "comments", "apartments", primary_key: "apartment_id"
-  add_foreign_key "comments", "users", primary_key: "user_id"
+  add_foreign_key "comments", "apartments", primary_key: "id"
+  add_foreign_key "comments", "users", primary_key: "id"
 end
