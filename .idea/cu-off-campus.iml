@@ -59,6 +59,9 @@
     <orderEntry type="library" scope="PROVIDED" name="cucumber-rails (v2.2.0, ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cucumber-tag-expressions (v2.0.4, ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cucumber-wire (v4.0.1, ruby-2.7.2-p137) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="database_cleaner (v2.0.1, ruby-2.7.2-p137) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="database_cleaner-active_record (v2.0.0, ruby-2.7.2-p137) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="database_cleaner-core (v2.0.1, ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.4.4, ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.10.0, ruby-2.7.2-p137) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.14.2, ruby-2.7.2-p137) [gem]" level="application" />
@@ -309,6 +312,17 @@
               <RakeTaskImpl description="Lookup nested dependencies for TEMPLATE (like messages/show or comments/_comment.html)" fullCommand="cache_digests:nested_dependencies" id="nested_dependencies" />
             </subtasks>
           </RakeTaskImpl>
+          <RakeTaskImpl description="Alias for cucumber:ok" fullCommand="cucumber" id="cucumber" />
+          <RakeTaskImpl id="cucumber">
+            <subtasks>
+              <RakeTaskImpl description="Run all features" fullCommand="cucumber:all" id="all" />
+              <RakeTaskImpl description="Run features that should pass" fullCommand="cucumber:ok" id="ok" />
+              <RakeTaskImpl description="Record failing features and run only them if any exist" fullCommand="cucumber:rerun" id="rerun" />
+              <RakeTaskImpl description="Run features that are being worked on" fullCommand="cucumber:wip" id="wip" />
+              <RakeTaskImpl description="" fullCommand="cucumber:annotations_setup" id="annotations_setup" />
+              <RakeTaskImpl description="" fullCommand="cucumber:statsetup" id="statsetup" />
+            </subtasks>
+          </RakeTaskImpl>
           <RakeTaskImpl id="db">
             <subtasks>
               <RakeTaskImpl description="Creates the database from DATABASE_URL or config/database.yml for the current RAILS_ENV (use db:create:all to create all databases in the config). Without RAILS_ENV or when RAILS_ENV is development, it defaults to creating the development and test databases" fullCommand="db:create" id="create" />
@@ -487,6 +501,7 @@
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl description="" fullCommand="environment" id="environment" />
+          <RakeTaskImpl description="" fullCommand="features" id="features" />
           <RakeTaskImpl description="" fullCommand="initializers" id="initializers" />
           <RakeTaskImpl description="" fullCommand="notes" id="notes" />
           <RakeTaskImpl id="notes">
