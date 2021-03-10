@@ -15,9 +15,12 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "apartments", primary_key: "apartment_id", force: :cascade do |t|
     t.text "name", null: false
     t.integer "price", null: false
+    t.text "image"
+    t.text "description"
+    t.text "address"
   end
 
-  create_table "comments", id: false, force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer "apartment_id"
     t.integer "user_id"
     t.text "comments"
