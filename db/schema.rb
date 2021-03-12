@@ -14,7 +14,10 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "apartments", force: :cascade do |t|
     t.text "name", null: false
-    t.integer "price", null: false
+    t.integer "price"
+    t.text "image"
+    t.text "description"
+    t.text "address"
   end
 
   create_table "comments", force: :cascade do |t|
