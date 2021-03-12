@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "description"
     t.text "address"
   end
-
+  
   create_table "comments", force: :cascade do |t|
     t.integer "apartment_id"
     t.integer "user_id"
