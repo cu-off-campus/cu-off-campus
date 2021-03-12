@@ -88,3 +88,7 @@ end
 apartments.each do |ap|
   Apartment.create!(ap)
 end
+
+comments.each do |comment|
+  Comment.create!(comment)
+end
