@@ -7,12 +7,12 @@ Feature: display list of movies filtered by MPAA rating
   Background: apartment data have been added to database
 
     Given the following apartment data exist
-      | name       | price | image                           | description  | address         |
-      | Apartment1 | 1500  | https://i.imgur.com/OweOwKu.jpg | Apartment 1. | 1 Apple St.     |
-      | Apartment2 | 2000  |                                 | Apartment 2. | 2 Apple St.     |
-      | Apartment3 | 2500  |                                 | Apartment 3! | 3 Banana St.    |
-      | Apartment4 | 3000  |                                 | Apartment 4. | 4 Canal St.     |
-      | Apartment5 | 3500  |                                 | Apartment 5. | 5 Lafayette St. |
+      | name       | price | rating | image                           | description  | address         |
+      | Apartment1 | 1500  | 0      | https://i.imgur.com/OweOwKu.jpg | Apartment 1. | 1 Apple St.     |
+      | Apartment2 | 2000  | 0      |                                 | Apartment 2. | 2 Apple St.     |
+      | Apartment3 | 2500  | 0      |                                 | Apartment 3! | 3 Banana St.    |
+      | Apartment4 | 3000  | 0      |                                 | Apartment 4. | 4 Canal St.     |
+      | Apartment5 | 3500  | 0      |                                 | Apartment 5. | 5 Lafayette St. |
 
     And I am on the listing page
     Then 10 seed apartments should exist
