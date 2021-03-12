@@ -30,7 +30,16 @@ apartments = [
     image: nil,
     description: "This is apartment 3.",
     address: "7 Coral St"
-  }
+  },
+
+  {
+    name: "Apartment 4",
+    price: 800,
+    rating: 0,
+    image: nil,
+    description: "This is apartment 4.",
+    address: "9 Tomato St"
+  },
 ]
 
 users = [
@@ -49,6 +58,27 @@ users = [
   { username: "Support", password: "alphagov/support" },
   { username: "Whitehall", password: "alphagov/whitehall" },
   { username: "Data insight non-govuk reach collector", password: "alphagov/datainsight-nongovuk-reach-collector" },
+]
+
+comments = [
+  {
+    "user_id": 1,
+    "apartment_id": 1,
+    "comments": "Good Apartment. Comfortable living experience. "
+  },
+
+  {
+    "user_id": 1,
+    "apartment_id": 2,
+    "comments": "Bad Apartment. Bad living experience. "
+  },
+
+  {
+    "user_id": 2,
+    "apartment_id": 1,
+    "comments": "Good. Would recommand it to friends"
+  },
+
 ]
 
 users.each do |user|
