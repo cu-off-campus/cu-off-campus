@@ -31,6 +31,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "password", null: false
   end
 
-  add_foreign_key "comments", "apartments", primary_key: "id"
-  add_foreign_key "comments", "users", primary_key: "id"
+  add_foreign_key "comments", "apartments"
+  add_foreign_key "comments", "users"
 end
