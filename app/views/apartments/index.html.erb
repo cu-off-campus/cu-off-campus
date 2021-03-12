@@ -1,0 +1,41 @@
+<div class="block">
+  <h2 class="title is-2">Apartment Listing</h2>
+</div>
+<div class="block">
+  <% should_close = false %>
+  <% @apartments.each_with_index do |apartment, idx| %>
+    <% if idx % 3 == 0 %>
+      <% should_close = true %>
+      <div class="tile is-ancestor">
+    <% end %>
+    <div class="tile is-parent">
+      <div class="card" style="width: 100%">
+<!--        <div class="card-image">-->
+<!--          <figure class="image is-4by3" style="overflow: hidden">-->
+<!--            <img src="<%#= apartment.image %>" alt="Apartment <%#= apartment.id %> image">-->
+<!--          </figure>-->
+<!--        </div>-->
+        <div class="card-content">
+          <div class="card-content">
+            <p class="title is-4"><%= apartment.name %></p>
+            <p class="subtitle">$<%= apartment.price %> <span class="small_text">per month</span></p>
+            <p class="content"><%= apartment.address %></p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <%= link_to "Details", apartment_path(apartment), class: "card-footer-item" %>
+        </div>
+      </div>
+    </div>
+    <% if idx % 3 == 2 and should_close %>
+      <% should_close = false %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if should_close %>
+    </div>
+  <% end %>
+</div>
+<div class="block">
+  <%= link_to 'Add new apartment', new_apartment_path, :class => 'button is-primary' %>
+</div>
