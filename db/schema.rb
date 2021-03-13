@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_03_14_012640) do
 
   create_table "apartments", force: :cascade do |t|
     t.text "name", null: false
@@ -19,17 +19,23 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "image"
     t.text "description"
     t.text "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
     t.integer "apartment_id"
     t.integer "user_id"
     t.text "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
     t.text "username", null: false
     t.text "password", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_foreign_key "comments", "apartments"

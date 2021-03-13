@@ -11,10 +11,11 @@ module ApplicationHelper
     shortened
   end
 
-  def self.validate_aptmt_params(permitted)
+  def validate_aptmt_params(permitted)
     !(permitted[:name].empty? ||
       permitted[:address].empty? ||
       permitted[:price].empty? ||
-      !permitted[:price].is_i?)
+      !permitted[:price].is_i? ||
+      permitted[:price].to_i <= 0)
   end
 end
