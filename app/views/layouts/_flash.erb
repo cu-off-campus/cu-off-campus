@@ -1,6 +1,8 @@
 <% if flash[:notice] %>
-  <div class="message is-info" role="alert" id="notice">
-    <%= flash[:notice] %>
+  <div class="message is-info" id="notice">
+    <div class="message-body">
+      <%= flash[:notice] %>
+    </div>
   </div>
 <% elsif flash[:warning] %>
   <div class="message is-danger" role="alert" id="warning">

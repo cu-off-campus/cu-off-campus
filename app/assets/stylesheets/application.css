@@ -14,7 +14,7 @@
  *= require_self
  */
 
-body {
+body, select, input {
     font-family: 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif;
 }
 
@@ -23,6 +23,6 @@ body {
 }
 
 .small_text {
-    font-size: small;
+    font-size: 0.7em;
     color: #999999;
 }

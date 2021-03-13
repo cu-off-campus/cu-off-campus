@@ -1,0 +1,39 @@
+<%= render "layouts/flash" %>
+
+<div class="block">
+  <h2 class="title is-2"><strong><%= @apartment.name %></strong></h2>
+</div>
+<div class="block">
+  <div class="columns">
+    <div class="column is-one-fifth">
+      <h3 class="subtitle is-3" id="price">
+        $<strong><%= @apartment.price %></strong> <span class="small_text">per month</span>
+      </h3>
+    </div>
+    <div class="column is-one-fifth" id="rating">
+      <h3 class="subtitle is-3">
+        Rating: <strong><%= @apartment.rating %></strong>
+      </h3>
+    </div>
+  </div>
+</div>
+<div class="block" id="address">
+  <%= @apartment.address %>
+</div>
+<div class="block" id="description">
+  <article class="message is-info">
+    <div class="message-header">
+      <p>Description</p>
+    </div>
+    <div class="message-body">
+      <% @apartment.description.split("\n").each do |str| %>
+      <p><%= str %></p>
+      <% end %>
+    </div>
+  </article>
+</div>
+<div class="block">
+  <%= link_to 'Edit Info', edit_apartment_path, class: 'button is-primary' %>
+  <%= link_to 'Write a Review', "#", class: 'button is-link' %>
+  <%= link_to 'Back to Listing', apartments_path, class: 'button is-success' %>
+</div>
