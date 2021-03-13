@@ -43,12 +43,18 @@ class ApartmentsController < ApplicationController
     @apartment = Apartment.find id
   end
 
-  def new
-
-  end
+  def new; end
 
   def create
-
+    permitted = apartment_params
+    unless ApplicationHelper.validate_aptmt_params permitted
+      flash[:warning] = "Invalid parameters."
+      redirect_to new_apartment_path and return
+    end
+    permitted[:rating] = 0
+    @apartment = Apartment.create!(permitted)
+    flash[:notice] = "'#{@apartment.name}' was successfully created."
+    redirect_to apartments_path
   end
 
   def edit
@@ -63,7 +69,7 @@ class ApartmentsController < ApplicationController
       redirect_to edit_apartment_path(@apartment) and return
     end
     @apartment.update_attributes!(permitted)
-    flash[:notice] = "Apartment '#{@apartment.name}' was successfully updated."
+    flash[:notice] = "'#{@apartment.name}' was successfully updated."
     redirect_to apartment_path(@apartment)
   end
 
