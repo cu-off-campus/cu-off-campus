@@ -18,6 +18,14 @@ body, select, input {
     font-family: 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif;
 }
 
+footer {
+    margin-top: 2em;
+}
+
+nav {
+    margin-bottom: 2em;
+}
+
 .crop {
     overflow: hidden !important;
 }
