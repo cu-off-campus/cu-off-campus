@@ -1,0 +1,66 @@
+<%= render "layouts/flash" %>
+
+<div class="block">
+  <h3 class="title is-3">Create a New Apartment Record</h3>
+</div>
+
+<%= form_tag apartments_path do %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label :apartment, :name, 'Name', class: 'label' %>
+    </div>
+    <div class="field-body">
+      <div class="field has-addons">
+        <%= text_field :apartment, :name, class: 'input', placeholder: 'Apartment name' %>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label :apartment, :price, 'Price', class: 'label' %>
+    </div>
+    <div class="field-body">
+      <div class="field has-addons">
+        <p class="control">
+          <a class="button is-static">
+            $
+          </a>
+        </p>
+        <p class="control">
+          <%= text_field :apartment, :price, class: 'input', placeholder: 'Price' %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label :apartment, :address, 'Address', class: 'label' %>
+    </div>
+    <div class="field-body">
+      <%= text_field :apartment, :address, class: 'input', placeholder: 'Address' %>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label :apartment, :description, 'Description', class: 'label' %>
+    </div>
+    <div class="field-body">
+      <%= text_area :apartment, :description, class: 'textarea', placeholder: 'Description' %>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field is-grouped">
+        <div class="control">
+          <%= submit_tag 'Save', class: 'button is-primary' %>
+        </div>
+        <p class="control">
+          <%= link_to 'Cancel', apartments_path, class: 'button is-light' %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>

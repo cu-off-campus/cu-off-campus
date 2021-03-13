@@ -1,0 +1,78 @@
+<div class="block">
+  <h2 class="title is-2">Apartment Listing</h2>
+</div>
+<div class="block">
+  <%= form_tag apartments_path, method: :get, id: 'filter_form' do %>
+    <div class="field is-grouped">
+      <div class="control" id="select_sort">
+        <div class="select">
+          <select name="sort">
+            <option <%= 'selected="selected"' if @sort == "" %> style="color: gray" value=""></option>
+            <option <%= 'selected="selected"' if @sort == "rating" %> value="rating">Rating</option>
+            <option <%= 'selected="selected"' if @sort == "price" %> value="price">Price</option>
+          </select>
+        </div>
+        <label class="label">Sort By</label>
+      </div>
+      <div class="control" id="select_price">
+        <div class="select">
+          <select name="price">
+            <option <%= 'selected="selected"' if @price == "" %> style="color: gray" value="">All</option>
+            <option <%= 'selected="selected"' if @price == "0-999" %> value="0-999">0~999</option>
+            <option <%= 'selected="selected"' if @price == "1000-1499" %> value="1000-1499">1000~1499</option>
+            <option <%= 'selected="selected"' if @price == "1500-1999" %> value="1500-1999">1500~2000</option>
+            <option <%= 'selected="selected"' if @price == "2000" %> value="2000">2000+</option>
+          </select>
+        </div>
+        <label class="label">Price Range</label>
+      </div>
+      <div class="control is-expanded" id="search-bar">
+        <input class="input" type="text" placeholder="Search..."
+               name="search" value="<%= @search unless @search.nil? || @search.empty? %>">
+      </div>
+      <div class="control">
+        <%= submit_tag 'Filter', id: 'filter_submit', class: 'button is-primary' %>
+      </div>
+      <div class="control">
+        <%= submit_tag 'Clear Filters', id: 'clear_filter_submit', class: 'button is-warning' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="block">
+  <%= render "layouts/flash" %>
+</div>
+<div class="block">
+  <div class="columns is-multiline">
+    <% @apartments.each do |apartment| %>
+      <div class="column is-one-third">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title" style="font-weight: normal">
+              Rating:&nbsp;<strong style="color: cornflowerblue; font-size: 1.3em"><%= apartment.rating %></strong>
+            </p>
+          </header>
+          <!--        <div class="card-image">-->
+          <!--          <figure class="image is-4by3" style="overflow: hidden">-->
+          <!--            <img src="<%#= apartment.image %>" alt="Apartment <%#= apartment.id %> image">-->
+          <!--          </figure>-->
+          <!--        </div>-->
+          <div class="card-content">
+            <div class="card-content">
+              <p class="title is-4"><%= apartment.name %></p>
+              <p class="subtitle">$<strong><%= apartment.price %></strong> <span class="small_text">per month</span></p>
+              <p class="content"><%= apartment.address %></p>
+              <p class="content"><%= text_abstract apartment.description %></p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <%= link_to "Details", apartment_path(apartment), class: "card-footer-item" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="block">
+  <%= link_to 'Add new apartment', new_apartment_path, :class => 'button is-primary' %>
+</div>

@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+body, select, input, textarea {
+    font-family: 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif;
+}
+
+footer {
+    margin-top: 2em;
+}
+
+nav {
+    margin-bottom: 2em;
+}
+
+.crop {
+    overflow: hidden !important;
+}
+
+.small_text {
+    font-size: 0.7em;
+    color: #999999;
+}
