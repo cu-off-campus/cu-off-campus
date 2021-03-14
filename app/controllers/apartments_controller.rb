@@ -1,4 +1,5 @@
 require './app/helpers/application_helper'
+include ApplicationHelper
 
 class ApartmentsController < ApplicationController
   def index
@@ -47,7 +48,7 @@ class ApartmentsController < ApplicationController
 
   def create
     permitted = apartment_params
-    unless ApplicationHelper.validate_aptmt_params permitted
+    unless validate_aptmt_params permitted
       flash[:warning] = "Invalid parameters."
       redirect_to new_apartment_path and return
     end
@@ -68,7 +69,7 @@ class ApartmentsController < ApplicationController
       flash[:warning] = "Invalid parameters."
       redirect_to edit_apartment_path(@apartment) and return
     end
-    @apartment.update_attributes!(permitted)
+    @apartment.update!(permitted)
     flash[:notice] = "'#{@apartment.name}' was successfully updated."
     redirect_to apartment_path(@apartment)
   end
