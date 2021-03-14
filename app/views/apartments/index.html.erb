@@ -6,7 +6,7 @@
     <div class="field is-grouped">
       <div class="control" id="select_sort">
         <div class="select">
-          <select name="sort">
+          <select name="sort" id="sort_select_box">
             <option <%= 'selected="selected"' if @sort == "" %> style="color: gray" value=""></option>
             <option <%= 'selected="selected"' if @sort == "rating" %> value="rating">Rating</option>
             <option <%= 'selected="selected"' if @sort == "price" %> value="price">Price</option>
@@ -16,18 +16,19 @@
       </div>
       <div class="control" id="select_price">
         <div class="select">
-          <select name="price">
+          <select name="price" id="price_select_box">
             <option <%= 'selected="selected"' if @price == "" %> style="color: gray" value="">All</option>
             <option <%= 'selected="selected"' if @price == "0-999" %> value="0-999">0~999</option>
             <option <%= 'selected="selected"' if @price == "1000-1499" %> value="1000-1499">1000~1499</option>
-            <option <%= 'selected="selected"' if @price == "1500-1999" %> value="1500-1999">1500~2000</option>
+            <option <%= 'selected="selected"' if @price == "1500-1999" %> value="1500-1999">1500~1999</option>
             <option <%= 'selected="selected"' if @price == "2000" %> value="2000">2000+</option>
           </select>
         </div>
         <label class="label">Price Range</label>
       </div>
       <div class="control is-expanded" id="search-bar">
-        <input class="input" type="text" placeholder="Search..."
+        <label hidden>Search</label>
+        <input class="input" type="text" placeholder="Search..." id="search_input"
                name="search" value="<%= @search unless @search.nil? || @search.empty? %>">
       </div>
       <div class="control">

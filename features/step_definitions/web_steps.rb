@@ -28,6 +28,12 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+When /^(?:|I )click "([^"]*)"$/ do |name|
+  click_button(name)
+rescue Capybara::ElementNotFound
+  click_link(name)
+end
+
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
@@ -54,7 +60,7 @@ end
 #
 When /^(?:|I )fill in the following:$/ do |fields|
   fields.rows_hash.each do |name, value|
-    When %{I fill in "#{name}" with "#{value}"}
+    When %(I fill in "#{name}" with "#{value}")
   end
 end
 
@@ -79,11 +85,11 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
-  if page.respond_to? :should
-    page.should have_content(text)
-  else
-    assert page.has_content?(text)
-  end
+  expect(page).to have_content(text)
+end
+
+Then /^(?:|I )should see "([^"]*)" filled in$/ do |text|
+  expect(page).to have_selector("input[value='#{text}']")
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
@@ -97,11 +103,7 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
-  if page.respond_to? :should
-    page.should have_no_content(text)
-  else
-    assert page.has_no_content?(text)
-  end
+  expect(page).to have_no_content(text)
 end
 
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
@@ -118,11 +120,7 @@ Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field
   with_scope(parent) do
     field = find_field(field)
     field_value = field.tag_name == 'textarea' ? field.text : field.value
-    if field_value.respond_to? :should
-      field_value.should =~ /#{value}/
-    else
-      assert_match(/#{value}/, field_value)
-    end
+    expect(field_value).to match(/#{value}/)
   end
 end
 
@@ -205,18 +203,14 @@ end
 
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == path_to(page_name)
-  else
-    assert_equal path_to(page_name), current_path
-  end
+  expect(current_path).to eq(path_to(page_name))
 end
 
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   query = URI.parse(current_url).query
   actual_params = query ? CGI.parse(query) : {}
   expected_params = {}
-  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
+  expected_pairs.rows_hash.each_pair { |k, v| expected_params[k] = v.split(',') }
 
   if actual_params.respond_to? :should
     actual_params.should == expected_params
