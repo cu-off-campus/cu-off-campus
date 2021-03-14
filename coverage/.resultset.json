@@ -1,0 +1,212 @@
+{
+  "RSpec": {
+    "coverage": {
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          1,
+          28,
+          null,
+          null,
+          null,
+          1,
+          1,
+          4,
+          4,
+          4,
+          null,
+          null,
+          1,
+          9,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/models/apartment.rb": {
+        "lines": [
+          1,
+          1,
+          5,
+          5,
+          2,
+          2,
+          null,
+          5,
+          null,
+          null,
+          1,
+          10,
+          null,
+          9,
+          9,
+          null,
+          4,
+          4,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/channels/application_cable/channel.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/channels/application_cable/connection.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/controllers/apartments_controller.rb": {
+        "lines": [
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/controllers/application_controller.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/models/comment.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "C:/Cloud/Google_Drive/Dropbox_Migrate/Mac-PC/E/Columbia/Course/COMSW4156-ASE/cu-off-campus/app/models/user.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1615706683
+  }
+}
