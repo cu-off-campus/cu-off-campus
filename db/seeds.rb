@@ -10,7 +10,7 @@ apartments = [
   {
     name: "Apartment 1",
     price: 1200,
-    rating: 0,
+    rating: 97,
     image: nil,
     description: "This is apartment 1.",
     address: "3 Apple St"
@@ -18,7 +18,7 @@ apartments = [
   {
     name: "Apartment 2",
     price: 1500,
-    rating: 0,
+    rating: 95,
     image: "https://i.imgur.com/OweOwKu.jpg",
     description: "This is apartment 2.",
     address: "5 Banana St"
@@ -26,20 +26,19 @@ apartments = [
   {
     name: "Apartment 3",
     price: 800,
-    rating: 0,
+    rating: 99,
     image: nil,
     description: "This is apartment 3.",
     address: "7 Coral St"
   },
-
   {
     name: "Apartment 4",
     price: 800,
-    rating: 0,
+    rating: 92,
     image: nil,
     description: "This is apartment 4.",
     address: "9 Tomato St"
-  },
+  }
 ]
 
 users = [
