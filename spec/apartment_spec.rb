@@ -1,5 +1,3 @@
-require 'simplecov'
-SimpleCov.start 'rails'
 require 'rails_helper'
 require_relative '../app/models/apartment'
 

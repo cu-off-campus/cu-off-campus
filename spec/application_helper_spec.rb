@@ -1,6 +1,5 @@
-require 'simplecov'
-SimpleCov.start 'rails'
-require_relative '../app/helpers/application_helper.rb'
+require 'rails_helper'
+require_relative '../app/helpers/application_helper'
 
 describe 'Class String' do
   it 'checks if it is a string to be converted into an integer' do
