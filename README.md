@@ -8,6 +8,16 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 - Leo Qian (yq2292)
 - Yiwen Fang (yf2560)
 
+## Links
+
+- Github: https://github.com/cu-off-campus/cu-off-campus
+- Heroku: https://glacial-sea-27301.herokuapp.com/apartments
+
+## Main Features
+
+- Apartment listing with sorting and searching functionalities
+- Edit and create apartment information
+
 ## Instructions
 
 Install `ruby 2.7.2`. Also, install bundle with `gem install bundle`.
