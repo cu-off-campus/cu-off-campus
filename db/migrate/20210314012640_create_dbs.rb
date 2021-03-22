@@ -1,4 +1,4 @@
-class CreateDbs < ActiveRecord::Migration[4.2]
+class CreateDbs < ActiveRecord::Migration[6.0]
   def up
     create_table "apartments" do |t|
       t.text "name", null: false

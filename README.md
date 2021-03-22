@@ -29,11 +29,7 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 
 Install `ruby 2.7.2`. Also, install bundle with `gem install bundle`.
 
-The project uses `sqlite3` as the database, so its development environment should be installed:
-
-```
-sudo apt install libsqlite3-dev
-```
+The project uses PostgreSQL as the database, so PostgreSQL environment should be ready.
 
 Then, install the required packages with `bundle install`:
 ```
