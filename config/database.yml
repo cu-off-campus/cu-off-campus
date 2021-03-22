@@ -6,6 +6,8 @@ default: &default
 development:
   <<: *default
   database: cuoc_development
+  username: cuoc
+  password: cuoc
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -13,6 +15,8 @@ development:
 test:
   <<: *default
   database: cuoc_test
+  username: cuoc
+  password: cuoc
 
 production:
   <<: *default
