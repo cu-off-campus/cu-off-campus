@@ -36,10 +36,9 @@ Then, install the required packages with `bundle install`:
 bundle install
 ```
 
-Migrate the database:
+Setup the database:
 ```
-bundle exec rake db:migrate
-bundle exec rake db:seed
+bundle exec rake db:setup
 ```
 
 ### Starting the server
@@ -55,18 +54,13 @@ bundle exec rails server -b 0.0.0.0
 For `rspec` tests, run
 
 ```
-bundle exec rake db:migrate RAILS_ENV=test
-bundle exec rake db:seed RAILS_ENV=test
 bundle exec rspec spec
-bundle exec rake db:drop RAILS_ENV=test
 ```
 
 For `cucumber` tests, run
 
 ```
-bundle exec rake db:migrate RAILS_ENV=test
 bundle exec cucumber features
-bundle exec rake db:drop RAILS_ENV=test
 ```
 
 The coverage report is in `coverage/` directory.
