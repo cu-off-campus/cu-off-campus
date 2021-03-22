@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+
 apartments = [
   {
     name: "Apartment 1",
@@ -41,44 +43,20 @@ apartments = [
   }
 ]
 
-users = [
-  { username: "Calendars", password: "alphagov/calendars" },
-  { username: "Content store", password: "alphagov/content-store" },
-  { username: "Feedback", password: "alphagov/feedback" },
-  { username: "Frontend", password: "alphagov/frontend" },
-  { username: "Imminence", password: "alphagov/imminence" },
-  { username: "Licence finder", password: "alphagov/licence-finder" },
-  { username: "Licensify", password: "alphagov/licensify" },
-  { username: "Publisher", password: "alphagov/publisher" },
-  { username: "Rummager", password: "alphagov/rummager" },
-  { username: "Signon", password: "alphagov/signon" },
-  { username: "Smart answers", password: "alphagov/smart-answers" },
-  { username: "Static", password: "alphagov/static" },
-  { username: "Support", password: "alphagov/support" },
-  { username: "Whitehall", password: "alphagov/whitehall" },
-  { username: "Data insight non-govuk reach collector", password: "alphagov/datainsight-nongovuk-reach-collector" },
-]
-
-comments = [
+users = Array.new(15) do
   {
-    "user_id": 1,
-    "apartment_id": 1,
-    "comments": "Good Apartment. Comfortable living experience. "
-  },
+    username: Faker::Alphanumeric.alpha(number: 10),
+    password: Faker::Alphanumeric.alphanumeric(number: 10)
+  }
+end
 
+comments = Array.new(15) do |i|
   {
-    "user_id": 1,
-    "apartment_id": 2,
-    "comments": "Bad Apartment. Bad living experience. "
-  },
-
-  {
-    "user_id": 2,
-    "apartment_id": 1,
-    "comments": "Good. Would recommand it to friends"
-  },
-
-]
+    user_id: i,
+    apartment_id: rand(5),
+    comments: Faker::Lorem.paragraph
+  }
+end
 
 users.each do |user|
   User.create!(user)
