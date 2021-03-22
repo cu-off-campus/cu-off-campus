@@ -8,9 +8,12 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 - Leo Qian (yq2292)
 - Yiwen Fang (yf2560)
 
-## proj-iter1
+## Iterations
 
-- Go to GitHub tag: `proj-iter1`
+### Iteration 1
+
+- Tag: `proj-iter1`
+- Branch: `iter-1-blocker`
 
 ## Links
 
