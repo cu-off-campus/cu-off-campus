@@ -20,6 +20,12 @@ class SessionsController < ApplicationController
     redirect_to register_path
   end
 
+  def delete_session
+    session.delete(:user_id)
+    flash[:notice] = "Successfully logged out."
+    redirect_back fallback_location: root_url
+  end
+
   private
 
   def login_params

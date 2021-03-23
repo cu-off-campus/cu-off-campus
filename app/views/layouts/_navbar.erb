@@ -19,8 +19,13 @@
         </div>
       </div>
     <% else %>
-      <div class="navbar-item">
-        Welcome, <%= current_user.username %>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Welcome, <%= current_user.username %>
+        </a>
+        <div class="navbar-dropdown">
+          <%= link_to 'Log Out', logout_path, class: 'navbar-item' %>
+        </div>
       </div>
     <% end %>
   </div>
