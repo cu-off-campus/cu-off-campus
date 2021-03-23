@@ -12,30 +12,34 @@
 
 ActiveRecord::Schema.define(version: 2021_03_14_012640) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "apartments", force: :cascade do |t|
-    t.text "name", null: false
+    t.string "name", null: false
     t.integer "price"
     t.integer "rating"
     t.text "image"
     t.text "description"
     t.text "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.integer "apartment_id"
     t.integer "user_id"
     t.text "comments"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.text "username", null: false
-    t.text "password", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "comments", "apartments"
