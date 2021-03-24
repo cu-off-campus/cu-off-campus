@@ -1,6 +1,6 @@
-<div class="block">
+<section class="section">
   <h2 class="title is-2">Apartment Listing</h2>
-</div>
+</section>
 <div class="block">
   <%= form_tag apartments_path, method: :get, id: 'filter_form' do %>
     <div class="field is-grouped">
@@ -50,14 +50,9 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title" style="font-weight: normal">
-              Rating:&nbsp;<strong style="color: cornflowerblue; font-size: 1.3em"><%= apartment.rating %></strong>
+              Rating:&nbsp;<strong style="color: cornflowerblue; font-size: 1.3em"><%= apartment.rating.round %></strong>
             </p>
           </header>
-          <!--        <div class="card-image">-->
-          <!--          <figure class="image is-4by3" style="overflow: hidden">-->
-          <!--            <img src="<%#= apartment.image %>" alt="Apartment <%#= apartment.id %> image">-->
-          <!--          </figure>-->
-          <!--        </div>-->
           <div class="card-content">
             <div class="card-content">
               <p class="title is-4"><%= apartment.name %></p>

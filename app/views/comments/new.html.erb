@@ -1,0 +1,35 @@
+<%= render "layouts/flash" %>
+<div class="container is-max-desktop">
+  <section class="section">
+    <h3 class="title is-3">Write a Review for <%= @apartment.name %></h3>
+  </section>
+  <%= form_tag comments_path do %>
+    <%= hidden_field :comment, :apartment_id, value: @apartment.id  %>
+    <%= hidden_field :comment, :user_id, value: session[:user_id]  %>
+    <div class="field">
+      <div class="label">
+        <%= label :comment, :rating, 'Rating', class: 'label' %>
+      </div>
+      <div class="control">
+        <%= text_field :comment, :rating, class: 'input' %>
+      </div>
+      <!--<p class="help is-danger">The rating must be an integer between 0 and 100</p>-->
+    </div>
+    <div class="field">
+      <div class="label">
+        <%= label :comment, :comment, 'Comment', class: 'label' %>
+      </div>
+      <div class="control">
+        <%= text_area :comment, :comment, class: 'textarea', placeholder: 'Write your comment here...' %>
+      </div>
+    </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <%= submit_tag 'Save', class: 'button is-primary' %>
+      </div>
+      <p class="control">
+        <%= link_to 'Cancel', apartment_path(@apartment), class: 'button is-light' %>
+      </p>
+    </div>
+  <% end %>
+</div>

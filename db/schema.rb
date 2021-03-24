@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_03_14_012640) do
   create_table "apartments", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price"
-    t.integer "rating"
     t.text "image"
     t.text "description"
     t.text "address"
@@ -29,7 +28,8 @@ ActiveRecord::Schema.define(version: 2021_03_14_012640) do
   create_table "comments", force: :cascade do |t|
     t.integer "apartment_id"
     t.integer "user_id"
-    t.text "comments"
+    t.integer "rating"
+    t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,7 +1,8 @@
 require './app/helpers/application_helper'
-include ApplicationHelper
 
 class ApartmentsController < ApplicationController
+  include ApplicationHelper
+
   def index
     if params[:commit] && params[:commit] != "Filter"
       session[:sort] = ''
@@ -52,7 +53,6 @@ class ApartmentsController < ApplicationController
       flash[:warning] = "Invalid parameters."
       redirect_to new_apartment_path and return
     end
-    permitted[:rating] = 0
     @apartment = Apartment.create!(permitted)
     flash[:notice] = "'#{@apartment.name}' was successfully created."
     redirect_to apartments_path
