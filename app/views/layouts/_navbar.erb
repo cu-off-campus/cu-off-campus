@@ -7,4 +7,26 @@
       <a class="navbar-item" href="<%= root_path %>">Home</a>
     </div>
   </div>
+
+  <div class="navbar-end">
+    <% if !session[:user_id] %>
+      <div class="navbar-item">
+        <div class="buttons">
+          <%= link_to register_path, class: "button is-primary" do %>
+            <b>Sign up</b>
+          <% end %>
+          <%= link_to "Log in", login_path, class: "button is-light" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Welcome, <%= current_user.username %>
+        </a>
+        <div class="navbar-dropdown">
+          <%= link_to 'Log Out', logout_path, class: 'navbar-item' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </nav>

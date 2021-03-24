@@ -1,0 +1,53 @@
+<div class="block">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="block">
+        <h3 class="title is-3">Register</h3>
+      </div>
+      <%= render "layouts/flash" %>
+      <div class="block">
+        <%= form_tag register_path, class: 'box' do %>
+          <div class="field">
+            <%= label :user, :username, 'Email', class: 'label' %>
+            <div class="field has-addons">
+              <div class="control is-expanded has-icons-left">
+                <%= text_field :user, :username, class: 'input' %>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </div>
+              <p class="control">
+                <a class="button is-static">
+                  @columbia.edu
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="field">
+            <%= label :user, :password, 'Password', class: 'label' %>
+            <p class="control has-icons-left">
+              <%= text_field :user, :password, class: 'input', type: 'password' %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <%= label :user, :password_confirmation, 'Password Confirmation', class: 'label' %>
+            <p class="control has-icons-left">
+              <%= text_field :user, :password_confirmation, class: 'input', type: 'password' %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <%= submit_tag 'Submit', class: 'button is-link' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

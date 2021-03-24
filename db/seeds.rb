@@ -45,21 +45,28 @@ apartments = [
 
 users = Array.new(15) do
   {
-    username: Faker::Alphanumeric.alpha(number: 10),
-    password: Faker::Alphanumeric.alphanumeric(number: 10)
+    username: Faker::Alphanumeric.alpha(number: 5),
+    password: "testpassword"
   }
 end
+users << {
+  username: "test",
+  password: "test"
+}
 
 comments = Array.new(15) do |i|
   {
-    user_id: i,
-    apartment_id: rand(5),
+    user_id: i + 1,
+    apartment_id: rand(1..4),
     comments: Faker::Lorem.paragraph
   }
 end
 
 users.each do |user|
-  User.create!(user)
+  u = User.new(**user, password_confirmation: 'nomatch')
+  u.email = "#{user[:username]}@columbia.edu"
+  u.password_confirmation = user[:password]
+  u.save
 end
 
 apartments.each do |ap|

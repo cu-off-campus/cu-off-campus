@@ -1,7 +1,7 @@
 class CreateDbs < ActiveRecord::Migration[6.0]
   def up
     create_table "apartments" do |t|
-      t.text "name", null: false
+      t.string "name", null: false
       t.integer "price"
       t.integer "rating"
       t.text "image"
@@ -20,8 +20,9 @@ class CreateDbs < ActiveRecord::Migration[6.0]
     end
 
     create_table "users", force: :cascade do |t|
-      t.text "username", null: false
-      t.text "password", null: false
+      t.string "username", null: false
+      t.string "email", null: false
+      t.string "password_digest", null: false
       t.timestamps
     end
 
