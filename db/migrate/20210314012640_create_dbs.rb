@@ -3,7 +3,6 @@ class CreateDbs < ActiveRecord::Migration[6.0]
     create_table "apartments" do |t|
       t.string "name", null: false
       t.integer "price"
-      t.integer "rating"
       t.text "image"
       t.text "description"
       t.text "address"
@@ -15,7 +14,8 @@ class CreateDbs < ActiveRecord::Migration[6.0]
     create_table "comments", force: :cascade do |t|
       t.integer "apartment_id"
       t.integer "user_id"
-      t.text "comments"
+      t.integer "rating"
+      t.text "comment"
       t.timestamps
     end
 

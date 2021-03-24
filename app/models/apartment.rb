@@ -19,4 +19,16 @@ class Apartment < ActiveRecord::Base
 
     where("price >= ?", l)
   end
+
+  def rating
+    Comment.rating_of id
+  end
+
+  def comments
+    Comment.where(apartment_id: id).order(updated_at: :desc)
+  end
+
+  def num_comments
+    comments.count
+  end
 end

@@ -1,19 +1,27 @@
 <%= render "layouts/flash" %>
 
-<div class="block">
+<section class="section">
   <h2 class="title is-2"><strong><%= @apartment.name %></strong></h2>
-</div>
+</section>
 <div class="block">
-  <div class="columns">
-    <div class="column is-one-fifth">
-      <h3 class="subtitle is-3" id="price">
-        $<strong><%= @apartment.price %></strong> <span class="small_text">per month</span>
-      </h3>
+  <div class="level">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Price <span class="small_text">(per month)</span></p>
+        <p class="title">$<%= @apartment.price %></p>
+      </div>
     </div>
-    <div class="column is-one-fifth" id="rating">
-      <h3 class="subtitle is-3">
-        Rating: <strong><%= @apartment.rating %></strong>
-      </h3>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Rating</p>
+        <p class="title"><%= @apartment.rating.round %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Comments</p>
+        <p class="title"><%= @apartment.num_comments %></p>
+      </div>
     </div>
   </div>
 </div>
@@ -27,13 +35,62 @@
     </div>
     <div class="message-body">
       <% @apartment.description.split("\n").each do |str| %>
-      <p><%= str %></p>
+        <p><%= str %></p>
       <% end %>
     </div>
   </article>
 </div>
 <div class="block">
   <%= link_to 'Edit Info', edit_apartment_path, class: 'button is-primary' %>
-  <%= link_to 'Write a Review', "#", class: 'button is-link' %>
+  <%= link_to 'Write a Comment', new_comment_path(apartment_id: @apartment.id), class: 'button is-link' %>
   <%= link_to 'Back to Listing', apartments_path, class: 'button is-success' %>
+</div>
+
+<section class="section is-small">
+  <h3 class="title is-3"><strong>Comments</strong></h3>
+</section>
+<div class="block" id="comments">
+  <% @apartment.comments.each do |comment| %>
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <div class="content">
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <p>
+                    <strong><%= comment.user.username %></strong>
+                    <small><%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S %z") %></small>
+                  </p>
+                </div>
+                <div class="level-item">
+                  <p style="position: center">
+                    <span class="is-size-7 has-text-grey">RATING</span>
+                    <span class="has-text-weight-bold"><%= comment.rating %></span>
+                  </p>
+                </div>
+              </div>
+              <% if session[:user_id] && comment.user_id == session[:user_id] %>
+                <div class="level-right">
+                  <a class="level-item" aria-label="edit" data-method="put" href="<%= comment_path(comment) %>">
+                    <span class="icon is-small">
+                      <i class="fas fa-edit" aria-hidden="true"></i>
+                    </span>
+                  </a>
+                  <a class="level-item" aria-label="delete" data-method="delete" href="<%= comment_path(comment) %>">
+                    <span class="icon is-small">
+                      <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                    </span>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+            <p>
+              <%= comment.comment %>
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  <% end %>
 </div>
