@@ -35,7 +35,12 @@ class ApartmentsController < ApplicationController
         '2000': [2000, nil]
       }[@price.to_sym]
     end
-    @apartments = Apartment.filter(@search, price_range, ordering)
+    @apartments = Apartment
+                    .filter(@search, price_range)
+                    .sort_by { |apartment| apartment.send(ordering.keys[0]) }
+    if ordering.values[0] == :desc
+      @apartments.reverse!
+    end
 
     flash[:notice] = "No apartment found with the filters." if @apartments.empty?
   end

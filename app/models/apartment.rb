@@ -1,11 +1,11 @@
 class Apartment < ActiveRecord::Base
-  def self.filter(query, price_range, ordering)
+  def self.filter(query, price_range)
     t = with_price_range(price_range)
     unless query.nil? || query.empty?
       query = "%#{query.downcase}%"
       t = t.where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", query, query)
     end
-    t.order(ordering)
+    t
   end
 
   def self.with_price_range(range)
