@@ -11,21 +11,26 @@
         <%= label :comment, :rating, 'Rating', class: 'label' %>
       </div>
       <div class="control">
-        <%= text_field :comment, :rating, class: 'input' %>
+        <%= text_field :comment, :rating, class: 'input', id: 'input-rating' %>
       </div>
-      <!--<p class="help is-danger">The rating must be an integer between 0 and 100</p>-->
+      <p class="help is-danger" id="warning-rating">
+        The rating must be an integer between 0 and 100
+      </p>
     </div>
     <div class="field">
       <div class="label">
         <%= label :comment, :comment, 'Comment', class: 'label' %>
       </div>
       <div class="control">
-        <%= text_area :comment, :comment, class: 'textarea', placeholder: 'Write your comment here...' %>
+        <%= text_area :comment, :comment, class: 'textarea', id: 'input-comment', placeholder: 'Write your comment here...' %>
       </div>
+      <p class="help is-info is-hidden" id="warning-comment">
+        You need ? more words to comment.
+      </p>
     </div>
     <div class="field is-grouped">
       <div class="control">
-        <%= submit_tag 'Save', class: 'button is-primary' %>
+        <%= submit_tag 'Save', class: 'button is-primary', id: 'btn-submit' %>
       </div>
       <p class="control">
         <%= link_to 'Cancel', apartment_path(@apartment), class: 'button is-light' %>
@@ -33,3 +38,5 @@
     </div>
   <% end %>
 </div>
+
+<%= javascript_include_tag 'comment' %>
