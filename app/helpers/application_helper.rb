@@ -19,6 +19,13 @@ module ApplicationHelper
       permitted[:price].to_i <= 0)
   end
 
+  def validate_comment_params(permitted)
+    permitted[:rating].is_i? &&
+      permitted[:rating].to_i >= 0 &&
+      permitted[:rating].to_i <= 100 &&
+      permitted[:comment].length >= 50
+  end
+
   def current_user
     User.find(session[:user_id]) if session[:user_id]
   end

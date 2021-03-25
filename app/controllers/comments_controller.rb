@@ -1,4 +1,8 @@
+require './app/helpers/application_helper'
+
 class CommentsController < ApplicationController
+  include ApplicationHelper
+
   def new
     unless session[:user_id]
       flash[:warning] = "You must be signed in to write a comment."
@@ -8,7 +12,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    unless Comment.create(comments_params)
+    unless validate_comment_params(comments_params) && Comment.create(comments_params)
       flash[:warning] = "Failed to comment."
       redirect_back fallback_location: apartment_url(comments_params[:apartment_id]) and return
     end
@@ -27,7 +31,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find params[:id]
-    unless @comment.update(comments_params)
+    unless validate_comment_params(comments_params) && @comment.update(comments_params)
       flash[:warning] = "Failed to edit your comment."
       redirect_back fallback_location: apartment_url(params[:apartment_id]) and return
     end

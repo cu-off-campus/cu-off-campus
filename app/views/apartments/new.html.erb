@@ -10,8 +10,13 @@
       <%= label :apartment, :name, 'Name', class: 'label' %>
     </div>
     <div class="field-body">
-      <div class="field has-addons">
-        <%= text_field :apartment, :name, class: 'input', placeholder: 'Apartment name' %>
+      <div class="field">
+        <div class="field has-addons">
+          <%= text_field :apartment, :name, class: 'input', placeholder: 'Apartment name', id: 'input-aptmt-name' %>
+        </div>
+        <p class="help is-danger" id="warning-aptmt-name">
+          Not a valid apartment name.
+        </p>
       </div>
     </div>
   </div>
@@ -20,14 +25,19 @@
       <%= label :apartment, :price, 'Price', class: 'label' %>
     </div>
     <div class="field-body">
-      <div class="field has-addons">
-        <p class="control">
-          <a class="button is-static">
-            $
-          </a>
-        </p>
-        <p class="control">
-          <%= text_field :apartment, :price, class: 'input', placeholder: 'Price' %>
+      <div class="field">
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">
+              $
+            </a>
+          </p>
+          <p class="control">
+            <%= text_field :apartment, :price, class: 'input', placeholder: 'Price', id: 'input-price' %>
+          </p>
+        </div>
+        <p class="help is-danger" id="warning-price">
+          This field must be integer only.
         </p>
       </div>
     </div>
@@ -37,7 +47,12 @@
       <%= label :apartment, :address, 'Address', class: 'label' %>
     </div>
     <div class="field-body">
-      <%= text_field :apartment, :address, class: 'input', placeholder: 'Address' %>
+      <div class="field">
+        <%= text_field :apartment, :address, class: 'input', placeholder: 'Address', id: 'input-addr' %>
+        <p class="help is-danger" id="warning-addr">
+          Not a valid address.
+        </p>
+      </div>
     </div>
   </div>
   <div class="field is-horizontal">
@@ -45,7 +60,7 @@
       <%= label :apartment, :description, 'Description', class: 'label' %>
     </div>
     <div class="field-body">
-      <%= text_area :apartment, :description, class: 'textarea', placeholder: 'Description' %>
+      <%= text_area :apartment, :description, class: 'textarea', placeholder: 'Description', id: 'input-desc' %>
     </div>
   </div>
   <div class="field is-horizontal">
@@ -55,12 +70,14 @@
     <div class="field-body">
       <div class="field is-grouped">
         <div class="control">
-          <%= submit_tag 'Save', class: 'button is-primary' %>
+          <%= submit_tag 'Save', class: 'button is-primary', id: 'btn-save', disabled: 'true' %>
         </div>
         <p class="control">
-          <%= link_to 'Cancel', apartments_path, class: 'button is-light' %>
+          <%= link_to 'Cancel', apartments_path, class: 'button is-light', id: 'btn-cancel' %>
         </p>
       </div>
     </div>
   </div>
 <% end %>
+
+<%= javascript_include_tag 'apartment_form' %>
