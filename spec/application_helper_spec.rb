@@ -42,34 +42,36 @@ describe 'text_abstract' do
     expect(dc.text_abstract('You are not reading this directly on GitHub.')).to eq('You are not reading this directly on GitHub.')
     expect(dc.text_abstract('Understand where to modify a Rails app to implement the various parts of a new feature, since a new feature touches.')).to eq('Understand where to modify a Rails app to implement the various parts of a new feature,...')
   end
+end
 
-  it 'shortens a long sentence to less than 80 characters' do
+describe 'validate_aptmt_params' do
+  it 'does validate_aptmt_params' do
     dc = DummyClass_ApplicationHelper.new
-    permitted = {:name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '1200'}
+    permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '1200' }
     expect(dc.validate_aptmt_params(permitted)).to eq(true)
 
-    permitted = {:name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '+1200'}
+    permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '+1200' }
     expect(dc.validate_aptmt_params(permitted)).to eq(true)
 
-    permitted = {:name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '++1200'}
+    permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '++1200' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
 
-    permitted = {:name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '--1200'}
+    permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '--1200' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
 
-    permitted = {:name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '-1200'}
+    permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '-1200' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
 
-    permitted = {:name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => 'price'}
+    permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => 'price' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
 
-    permitted = {:name => '', :address => '3811 Meadowcrest Lane', :price => '1200'}
+    permitted = { :name => '', :address => '3811 Meadowcrest Lane', :price => '1200' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
 
-    permitted = {:name => 'Apartment 1', :address => '', :price => '1200'}
+    permitted = { :name => 'Apartment 1', :address => '', :price => '1200' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
 
-    permitted = {:name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => ''}
+    permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
   end
 end
