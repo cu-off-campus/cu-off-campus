@@ -37,8 +37,8 @@ class ApartmentsController < ApplicationController
     end
     @apartments = Apartment.filter(@search, price_range)
     if ordering
-      @apartments.sort_by! { |apartment| apartment.send(ordering.keys[0]) }
-      @apartment.reverse! if ordering.values[0] == :desc
+      @apartments = @apartments.sort_by { |apartment| apartment.send(ordering.keys[0]) }
+      @apartments.reverse! if ordering.values[0] == :desc
     end
 
     flash[:notice] = "No apartment found with the filters." if @apartments.empty?
