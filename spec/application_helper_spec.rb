@@ -74,4 +74,21 @@ describe 'validate_aptmt_params' do
     permitted = { :name => 'Apartment 1', :address => '3811 Meadowcrest Lane', :price => '' }
     expect(dc.validate_aptmt_params(permitted)).to eq(false)
   end
+
+  describe 'validate_comment_params' do
+    it 'does validate_comment_params' do
+      dc = DummyClass_ApplicationHelper.new
+      permitted = { :rating => 'rating', :comment => 'dummy' * 50 }
+      expect(dc.validate_comment_params(permitted)).to eq(false)
+
+      permitted = { :rating => '200', :comment => 'dummy' * 50 }
+      expect(dc.validate_comment_params(permitted)).to eq(false)
+
+      permitted = { :rating => '50', :comment => 'dummy' }
+      expect(dc.validate_comment_params(permitted)).to eq(false)
+
+      permitted = { :rating => '50', :comment => 'dummy' * 50 }
+      expect(dc.validate_comment_params(permitted)).to eq(true)
+    end
+  end
 end
