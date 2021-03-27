@@ -7,19 +7,23 @@ class ApartmentsController < ApplicationController
     if params[:commit] && params[:commit] != "Filter"
       session[:sort] = ''
       session[:price] = ''
+      session[:search] = ''
       flash.clear
       redirect_to and return
     end
     @sort = params[:sort] || session[:sort]
     @price = params[:price] || session[:price]
+    @search = params[:search] || session[:search]
 
-    if (params[:sort] != session[:sort]) || (params[:price] != session[:price])
+    if (params[:sort] != session[:sort]) ||
+      (params[:price] != session[:price]) ||
+      (params[:search] != session[:search])
       session[:sort] = @sort
       session[:price] = @price
-      redirect_to sort: @sort, price: @price and return
+      session[:search] = @search
+      redirect_to sort: @sort, price: @price, search: @search and return
     end
 
-    @search = params[:search]
     ordering = case @sort
                when 'rating'
                  { rating: :desc }
