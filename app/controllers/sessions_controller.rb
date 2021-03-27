@@ -10,6 +10,10 @@ class SessionsController < ApplicationController
   end
 
   def create_user
+    if User.find_by(username: register_params[:username])
+      flash[:warning] = "User with this username already exists."
+      redirect_to register_path and return
+    end
     @user = User.new(register_params)
     @user.email = "#{register_params[:username]}@columbia.edu"
     if @user.save
