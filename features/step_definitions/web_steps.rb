@@ -223,3 +223,6 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
+Then /^(?:|I )should not be able to click "([^"]*)"$/ do |btn|
+  expect(page).to have_button(btn, disabled: true)
+end

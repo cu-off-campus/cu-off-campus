@@ -1,8 +1,7 @@
 require './app/helpers/application_helper'
+include ApplicationHelper
 
 class ApartmentsController < ApplicationController
-  include ApplicationHelper
-
   def index
     if params[:commit] && params[:commit] != "Filter"
       session[:sort] = ''

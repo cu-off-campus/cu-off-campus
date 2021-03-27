@@ -12,4 +12,5 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w[
   apartment_form.js
   comment.js
+  register.js
 ]
