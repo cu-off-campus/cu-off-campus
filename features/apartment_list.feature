@@ -38,21 +38,21 @@ Feature: Listing and filtering apartment listing
     When I am on the listing page
     And  I select "Price" from "sort_select_box"
     And  I click "Filter"
-    Then the apartment order is as follows
+    Then I should see the following in order
       | Apartment5 |
       | Apartment4 |
       | Apartment3 |
       | Apartment2 |
       | Apartment1 |
     When I click "Home"
-    Then the apartment order is as follows
+    Then I should see the following in order
       | Apartment5 |
       | Apartment4 |
       | Apartment3 |
       | Apartment2 |
       | Apartment1 |
     When I click "Clear Filters"
-    Then the apartment order is as follows
+    Then I should see the following in order
       | Apartment1 |
       | Apartment2 |
       | Apartment3 |
@@ -64,7 +64,7 @@ Feature: Listing and filtering apartment listing
     And  I click "clear_filter_submit"
     And  I select "Rating" from "sort_select_box"
     And  I click "Filter"
-    Then the apartment order is as follows
+    Then I should see the following in order
       | Apartment5 |
       | Apartment3 |
       | Apartment1 |

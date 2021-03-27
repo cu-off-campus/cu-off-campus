@@ -52,6 +52,8 @@ bundle exec rails server -b 0.0.0.0
 For `rspec` tests, run
 
 ```
+bundle exec rake db:drop RAILS_ENV=test
+bundle exec rake db:setup RAILS_ENV=test
 bundle exec rspec spec
 ```
 

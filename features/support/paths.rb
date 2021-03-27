@@ -15,6 +15,8 @@ module NavigationHelpers
     when /^the add apartment page$/ then '/apartments/new'
     when /^the register page$/ then '/register'
     when /^the login page$/ then '/login'
+    when /^the new comment page for "(.+)"$/ then "/comments/new?apartment_id=#{Apartment.find_by(name: $1).id}"
+    when /^the edit comment page for apartment "(.+)" and comment (\d+)$/ then "/comments/#{$2}/edit?apartment_id=#{Apartment.find_by(name: $1).id}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

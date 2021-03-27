@@ -72,12 +72,15 @@
               </div>
               <% if session[:user_id] && comment.user_id == session[:user_id] %>
                 <div class="level-right">
-                  <a class="level-item" aria-label="edit" href="<%= edit_comment_path(comment, apartment_id: @apartment.id) %>">
+                  <a class="level-item"
+                     aria-label="edit"
+                     id="edit-comment-<%= comment.id %>"
+                     href="<%= edit_comment_path(comment, apartment_id: @apartment.id) %>">
                     <span class="icon is-small">
                       <i class="fas fa-edit" aria-hidden="true"></i>
                     </span>
                   </a>
-                  <a class="level-item" aria-label="delete" data-method="delete" href="<%= comment_path(comment) %>">
+                  <a class="level-item" aria-label="delete" data-method="delete" id="delete-comment-<%= comment.id %>" href="<%= comment_path(comment) %>">
                     <span class="icon is-small">
                       <i class="fas fa-trash-alt" aria-hidden="true"></i>
                     </span>

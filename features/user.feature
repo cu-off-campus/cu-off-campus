@@ -11,6 +11,7 @@ Feature: User login, logout, and registration
     Given the following users exist
       | username | password |
       | user1    | test1    |
+    Then 1 seed user should exist
 
   Scenario: Register new user
     When I am on the main page

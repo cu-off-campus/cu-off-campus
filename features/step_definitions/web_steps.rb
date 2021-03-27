@@ -202,7 +202,9 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
 end
 
 Then /^(?:|I )should be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
+  u = URI.parse(current_url)
+  current_path = u.path
+  current_path += "?#{u.query}" if u.query
   expect(current_path).to eq(path_to(page_name))
 end
 
@@ -225,4 +227,12 @@ end
 
 Then /^(?:|I )should not be able to click "([^"]*)"$/ do |btn|
   expect(page).to have_button(btn, disabled: true)
+end
+
+Then /I should see the following in order/ do |ordering|
+  e1 = nil
+  ordering.rows.each do |value|
+    expect(/#{e1}.*#{value}/m =~ page.body).to be_truthy
+    e1 = value
+  end
 end
