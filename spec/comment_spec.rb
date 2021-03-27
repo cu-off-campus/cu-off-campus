@@ -1,42 +1,10 @@
 require 'rails_helper'
-require_relative '../app/models/apartment'
+require_relative '../app/models/comment'
+require 'faker'
 
-describe Apartment do
-  describe 'with_price_range' do
-    it 'should return the Apartment\'s where clause result by extracting the left/right price bound' do
-      range = nil
-      expect(Apartment.with_price_range(range)).to eq(Apartment.all)
-
-      range = [nil, nil]
-      expect(Apartment.with_price_range(range)).to eq(Apartment.all)
-
-      range = [nil, 2000]
-      expect(Apartment.with_price_range(range)).to eq(Apartment.where(price: (0..2000)))
-
-      range = [1500, 2000]
-      expect(Apartment.with_price_range(range)).to eq(Apartment.where(price: (1500..2000)))
-
-      range = [1500, nil]
-      expect(Apartment.with_price_range(range)).to eq(Apartment.where("price >= ?", 1500))
-    end
-
-    it 'should filter Apartment by query, price_range, ordering' do
-      query = nil
-      price_range = nil
-      expect(Apartment.filter(query, price_range)).to eq(Apartment.with_price_range(price_range))
-
-      query = 'o'
-      price_range = nil
-      expect(Apartment.filter(query, price_range)).to eq(Apartment.where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", '%o%', '%o%'))
-
-      query = 'apple'
-      price_range = [1000, 1499]
-      expect(Apartment.filter(query, price_range)).to eq(Apartment.where(price: (1000..1499)).where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", '%apple%', '%apple%'))
-    end
-  end
-
-  describe 'rating' do
-    it 'does rating' do
+describe Comment do
+  describe 'self.rating_of' do
+    it 'does self.rating_of' do
       user = {
         username: "test",
         password: "test"
@@ -56,7 +24,6 @@ describe Apartment do
       }
       Apartment.create!(ap)
       apartment_id = Apartment.find_by(ap)[:id]
-      apartment = Apartment.find(apartment_id)
 
       comment = {
         user_id: User.find_by_username("test").id,
@@ -67,7 +34,7 @@ describe Apartment do
       Comment.create!(comment)
       comment_id = Comment.find_by(comment)[:id]
 
-      expect(apartment.rating).to eq(Comment.rating_of apartment_id)
+      expect(Comment.rating_of(apartment_id)).to eq(Comment.where(apartment_id: apartment_id).average(:rating))
 
       Comment.destroy(comment_id)
       u.destroy
@@ -75,8 +42,8 @@ describe Apartment do
     end
   end
 
-  describe 'comments' do
-    it 'does comments' do
+  describe 'apartment' do
+    it 'does apartment' do
       user = {
         username: "test",
         password: "test"
@@ -96,7 +63,6 @@ describe Apartment do
       }
       Apartment.create!(ap)
       apartment_id = Apartment.find_by(ap)[:id]
-      apartment = Apartment.find(apartment_id)
 
       comment = {
         user_id: User.find_by_username("test").id,
@@ -107,7 +73,9 @@ describe Apartment do
       Comment.create!(comment)
       comment_id = Comment.find_by(comment)[:id]
 
-      expect(apartment.comments).to eq(Comment.where(apartment_id: apartment_id).order(updated_at: :desc))
+      comment_1 = Comment.first
+      apartment_id = comment_1.apartment_id
+      expect(comment_1.apartment).to eq(Apartment.find(apartment_id))
 
       Comment.destroy(comment_id)
       u.destroy
@@ -115,8 +83,8 @@ describe Apartment do
     end
   end
 
-  describe 'num_comments' do
-    it 'does num_comments' do
+  describe 'user' do
+    it 'does user' do
       user = {
         username: "test",
         password: "test"
@@ -136,7 +104,6 @@ describe Apartment do
       }
       Apartment.create!(ap)
       apartment_id = Apartment.find_by(ap)[:id]
-      apartment = Apartment.find(apartment_id)
 
       comment = {
         user_id: User.find_by_username("test").id,
@@ -147,8 +114,9 @@ describe Apartment do
       Comment.create!(comment)
       comment_id = Comment.find_by(comment)[:id]
 
-      apartment = Apartment.find_by(ap)
-      expect(apartment.num_comments).to eq(apartment.comments.count)
+      comment_2 = Comment.first
+      user_id = comment_2.user_id
+      expect(comment_2.user).to eq(User.find(user_id))
 
       Comment.destroy(comment_id)
       u.destroy
