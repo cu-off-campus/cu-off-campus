@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   def self.rating_of(apartment_id)
-    where(apartment_id: apartment_id).average(:rating)
+    where(apartment_id: apartment_id).average(:rating) || 0
   end
 
   def apartment
