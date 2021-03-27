@@ -26,7 +26,7 @@
           <div class="field">
             <%= label :user, :password, 'Password', class: 'label' %>
             <p class="control has-icons-left">
-              <%= text_field :user, :password, class: 'input', type: 'password' %>
+              <%= text_field :user, :password, class: 'input', id: 'input-pw', type: 'password' %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
@@ -35,15 +35,18 @@
           <div class="field">
             <%= label :user, :password_confirmation, 'Password Confirmation', class: 'label' %>
             <p class="control has-icons-left">
-              <%= text_field :user, :password_confirmation, class: 'input', type: 'password' %>
+              <%= text_field :user, :password_confirmation, class: 'input', id: 'input-pw-confirm', type: 'password' %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
             </p>
+            <p class="help is-danger is-hidden" id="warning-confirm">
+              Passwords do not match
+            </p>
           </div>
           <div class="field is-grouped">
             <div class="control">
-              <%= submit_tag 'Submit', class: 'button is-link' %>
+              <%= submit_tag 'Submit', id: 'btn-submit', class: 'button is-link' %>
             </div>
           </div>
         <% end %>
@@ -51,3 +54,5 @@
     </div>
   </div>
 </div>
+
+<%= javascript_include_tag 'register' %>

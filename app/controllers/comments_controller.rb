@@ -1,8 +1,7 @@
 require './app/helpers/application_helper'
+include ApplicationHelper
 
 class CommentsController < ApplicationController
-  include ApplicationHelper
-
   def new
     unless session[:user_id]
       flash[:warning] = "You must be signed in to write a comment."

@@ -23,6 +23,7 @@ $(document).ready(function() {
             $warning_comment.removeClass("is-hidden");
             $warning_comment.text(`You need ${50 - comment_word_count} more words to comment.`);
         }
+        check_button();
     }
 
     check_comment();

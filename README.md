@@ -14,11 +14,11 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 
 - Tag: `proj-iter1`
 - Branch: `iter-1-blocker`
+- Heroku: https://glacial-sea-27301.herokuapp.com
 
 ## Links
 
 - Github: https://github.com/cu-off-campus/cu-off-campus
-- Heroku: https://glacial-sea-27301.herokuapp.com
 
 ## Main Features
 
@@ -49,18 +49,27 @@ bundle exec rails server -b 0.0.0.0
 
 ### Run the tests
 
-> Currently, database should be populated every time the test is run. Will change in later versions. 
-
 For `rspec` tests, run
 
 ```
+bundle exec rake db:drop RAILS_ENV=test
+bundle exec rake db:setup RAILS_ENV=test
 bundle exec rspec spec
 ```
+
+#### Cucumber
+
+> Database should be empty before the test is run. 
 
 For `cucumber` tests, run
 
 ```
+bundle exec rake db:drop RAILS_ENV=test
+bundle exec rake db:create RAILS_ENV=test
+bundle exec rake db:migrate RAILS_ENV=test
 bundle exec cucumber features
 ```
 
-The coverage report is in `coverage/` directory.
+#### Coverage
+
+After running all the above tests, the coverage report is generated in the `coverage/` directory.
