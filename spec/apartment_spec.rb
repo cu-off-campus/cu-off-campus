@@ -38,8 +38,8 @@ describe Apartment do
   describe 'rating' do
     it 'does rating' do
       user = {
-        username: "test",
-        password: "test"
+        username: "test999",
+        password: "test999"
       }
 
       u = User.new(**user, password_confirmation: 'nomatch')
@@ -59,7 +59,7 @@ describe Apartment do
       apartment = Apartment.find(apartment_id)
 
       comment = {
-        user_id: User.find_by_username("test").id,
+        user_id: User.find_by_username("test999").id,
         apartment_id: apartment_id,
         rating: rand(50..100),
         comment: 'My comment'
@@ -78,8 +78,8 @@ describe Apartment do
   describe 'comments' do
     it 'does comments' do
       user = {
-        username: "test",
-        password: "test"
+        username: "test999",
+        password: "test999"
       }
 
       u = User.new(**user, password_confirmation: 'nomatch')
@@ -99,7 +99,7 @@ describe Apartment do
       apartment = Apartment.find(apartment_id)
 
       comment = {
-        user_id: User.find_by_username("test").id,
+        user_id: User.find_by_username("test999").id,
         apartment_id: apartment_id,
         rating: rand(50..100),
         comment: 'My comment'
@@ -118,8 +118,8 @@ describe Apartment do
   describe 'num_comments' do
     it 'does num_comments' do
       user = {
-        username: "test",
-        password: "test"
+        username: "test999",
+        password: "test999"
       }
 
       u = User.new(**user, password_confirmation: 'nomatch')
@@ -139,7 +139,7 @@ describe Apartment do
       apartment = Apartment.find(apartment_id)
 
       comment = {
-        user_id: User.find_by_username("test").id,
+        user_id: User.find_by_username("test999").id,
         apartment_id: apartment_id,
         rating: rand(50..100),
         comment: 'My comment'

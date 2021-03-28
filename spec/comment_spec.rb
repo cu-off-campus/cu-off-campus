@@ -6,8 +6,8 @@ describe Comment do
   describe 'self.rating_of' do
     it 'does self.rating_of' do
       user = {
-        username: "test",
-        password: "test"
+        username: "test999",
+        password: "test999"
       }
 
       u = User.new(**user, password_confirmation: 'nomatch')
@@ -26,7 +26,7 @@ describe Comment do
       apartment_id = Apartment.find_by(ap)[:id]
 
       comment = {
-        user_id: User.find_by_username("test").id,
+        user_id: User.find_by_username("test999").id,
         apartment_id: apartment_id,
         rating: rand(50..100),
         comment: 'My comment'
@@ -45,8 +45,8 @@ describe Comment do
   describe 'apartment' do
     it 'does apartment' do
       user = {
-        username: "test",
-        password: "test"
+        username: "test999",
+        password: "test999"
       }
 
       u = User.new(**user, password_confirmation: 'nomatch')
@@ -65,7 +65,7 @@ describe Comment do
       apartment_id = Apartment.find_by(ap)[:id]
 
       comment = {
-        user_id: User.find_by_username("test").id,
+        user_id: User.find_by_username("test999").id,
         apartment_id: apartment_id,
         rating: rand(50..100),
         comment: 'My comment'
@@ -73,7 +73,7 @@ describe Comment do
       Comment.create!(comment)
       comment_id = Comment.find_by(comment)[:id]
 
-      comment_1 = Comment.first
+      comment_1 = Comment.find(comment_id)
       apartment_id = comment_1.apartment_id
       expect(comment_1.apartment).to eq(Apartment.find(apartment_id))
 
@@ -86,8 +86,8 @@ describe Comment do
   describe 'user' do
     it 'does user' do
       user = {
-        username: "test",
-        password: "test"
+        username: "test999",
+        password: "test999"
       }
 
       u = User.new(**user, password_confirmation: 'nomatch')
@@ -106,7 +106,7 @@ describe Comment do
       apartment_id = Apartment.find_by(ap)[:id]
 
       comment = {
-        user_id: User.find_by_username("test").id,
+        user_id: User.find_by_username("test999").id,
         apartment_id: apartment_id,
         rating: rand(50..100),
         comment: 'My comment'
@@ -114,7 +114,7 @@ describe Comment do
       Comment.create!(comment)
       comment_id = Comment.find_by(comment)[:id]
 
-      comment_2 = Comment.first
+      comment_2 = Comment.find(comment_id)
       user_id = comment_2.user_id
       expect(comment_2.user).to eq(User.find(user_id))
 

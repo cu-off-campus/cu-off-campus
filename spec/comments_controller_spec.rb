@@ -25,8 +25,8 @@ RSpec.describe CommentsController, :type => :controller do
 
   it 'does create' do
     user = {
-      username: "test",
-      password: "test"
+      username: "test999",
+      password: "test999"
     }
 
     u = User.new(**user, password_confirmation: 'nomatch')
@@ -52,8 +52,6 @@ RSpec.describe CommentsController, :type => :controller do
     expect(response).to redirect_to apartment_url(apartment_id)
     expect(response.inspect.to_s).to include "Failed to comment."
 
-    Comment.destroy_all
-
     ap = {
       name: "Apartment 999",
       price: 1200,
@@ -72,15 +70,18 @@ RSpec.describe CommentsController, :type => :controller do
     expect(response).to redirect_to apartment_path(apartment_id)
     expect(response.inspect.to_s).to include "Commented successfully."
 
-    Comment.destroy_all
+    Comment.where({ rating: '50',
+                    comment: 'dummy' * 50,
+                    apartment_id: apartment_id,
+                    user_id: u.id }).destroy_all
     Apartment.destroy(apartment_id)
     u.destroy
   end
 
   it 'does edit' do
     user = {
-      username: "test",
-      password: "test"
+      username: "test999",
+      password: "test999"
     }
 
     u = User.new(**user, password_confirmation: 'nomatch')
@@ -99,7 +100,7 @@ RSpec.describe CommentsController, :type => :controller do
     apartment_id = Apartment.find_by(ap)[:id]
 
     comment = {
-      user_id: User.find_by_username("test").id,
+      user_id: User.find_by_username("test999").id,
       apartment_id: apartment_id,
       rating: rand(50..100),
       comment: 'My comment'
@@ -121,8 +122,8 @@ RSpec.describe CommentsController, :type => :controller do
 
   it 'does update' do
     user = {
-      username: "test",
-      password: "test"
+      username: "test999",
+      password: "test999"
     }
 
     u = User.new(**user, password_confirmation: 'nomatch')
@@ -141,7 +142,7 @@ RSpec.describe CommentsController, :type => :controller do
     apartment_id = Apartment.find_by(ap)[:id]
 
     comment = {
-      user_id: User.find_by_username("test").id,
+      user_id: User.find_by_username("test999").id,
       apartment_id: apartment_id,
       rating: rand(50..100),
       comment: 'My comment'
@@ -169,15 +170,15 @@ RSpec.describe CommentsController, :type => :controller do
     expect(response).to redirect_to apartment_url(apartment_id)
     expect(response.inspect.to_s).to include "Your comment was successfully updated."
 
-    Comment.destroy_all
+    Comment.find(comment_id).destroy
     u.destroy
     Apartment.destroy(apartment_id)
   end
 
   it 'does destroy' do
     user = {
-      username: "test",
-      password: "test"
+      username: "test999",
+      password: "test999"
     }
 
     u = User.new(**user, password_confirmation: 'nomatch')
@@ -196,7 +197,7 @@ RSpec.describe CommentsController, :type => :controller do
     apartment_id = Apartment.find_by(ap)[:id]
 
     comment = {
-      user_id: User.find_by_username("test").id,
+      user_id: User.find_by_username("test999").id,
       apartment_id: apartment_id,
       rating: rand(50..100),
       comment: 'My comment'
@@ -212,7 +213,6 @@ RSpec.describe CommentsController, :type => :controller do
     expect(response).to redirect_to apartment_url(apartment_id)
     expect(response.inspect.to_s).to include "Successfully deleted the comment."
 
-    Comment.destroy_all
     u.destroy
     Apartment.destroy(apartment_id)
   end
