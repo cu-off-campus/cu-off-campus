@@ -16,6 +16,10 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 - Branch: `iter-1-blocker`
 - Heroku: https://glacial-sea-27301.herokuapp.com
 
+### Iteration 2
+
+- Heroku: https://fierce-ravine-62859.herokuapp.com
+
 ## Links
 
 - Github: https://github.com/cu-off-campus/cu-off-campus
