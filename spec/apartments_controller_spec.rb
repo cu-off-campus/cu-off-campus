@@ -1,7 +1,11 @@
 require 'rails_helper'
 require_relative '../app/controllers/apartments_controller'
+require_relative '../app/helpers/application_helper'
 
 RSpec.describe ApartmentsController, :type => :controller do
+  # Include for to test current_user in application_helper.rb
+  include ApplicationHelper
+
   it 'does index' do
     get :index, params: { commit: nil }
     expect(response).to redirect_to apartments_path
@@ -108,5 +112,23 @@ RSpec.describe ApartmentsController, :type => :controller do
     expect(response).to redirect_to edit_apartment_path(Apartment.find id)
 
     Apartment.destroy(id)
+  end
+
+  # https://stackoverflow.com/questions/30462215/setting-a-session-value-through-rspec
+  it 'tests current_user in application_helper.rb' do
+    user = {
+      username: "test",
+      password: "test"
+    }
+
+    u = User.new(**user, password_confirmation: 'nomatch')
+    u.email = "#{user[:username]}@columbia.edu"
+    u.password_confirmation = user[:password]
+    u.save
+
+    get :index, params: { commit: nil }, session: { user_id: u.id }
+    expect(current_user).to eq(User.find(u.id))
+
+    u.destroy
   end
 end
