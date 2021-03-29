@@ -18,6 +18,8 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 
 ### Iteration 2
 
+- Tag: `proj-iter2`
+- Branch: `iter-2-blocker`
 - Heroku: https://fierce-ravine-62859.herokuapp.com
 
 ## Links
@@ -31,9 +33,13 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 
 ## Instructions
 
-Install `ruby 2.7.2`. Also, install bundle with `gem install bundle`.
+### Database Preparation
 
-The project uses PostgreSQL as the database, so PostgreSQL environment should be ready.
+The project uses PostgreSQL as the database, so PostgreSQL environment should be ready. There should be a user `cuoc` with the password `cuoc` configured (for development environment and test environment).
+
+### Running with Rails
+
+Install `ruby 2.7.2`. Also, install bundle with `gem install bundle`.
 
 Then, install the required packages with `bundle install`:
 ```
@@ -45,13 +51,13 @@ Setup the database:
 bundle exec rake db:setup
 ```
 
-### Starting the server
+Then start the server.
 
 ```
 bundle exec rails server -b 0.0.0.0
 ```
 
-### Run the tests
+### Runing the tests
 
 For `rspec` tests, run
 
