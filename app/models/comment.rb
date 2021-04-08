@@ -10,4 +10,8 @@ class Comment < ActiveRecord::Base
   def user
     User.find(user_id)
   end
+
+  def tags_array
+    tags.split(",")
+  end
 end
