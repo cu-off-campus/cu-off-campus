@@ -28,6 +28,14 @@
         You need ? more words to comment.
       </p>
     </div>
+    <div class="field">
+      <div class="label">
+        <%= label :comment, :tags, 'Tags', class: 'label' %>
+      </div>
+      <div class="control">
+        <%= text_field :comment, :tags, class: 'input', id: 'input-tags', placeholder: 'Add up to 5 tags less than 10 characters' %>
+      </div>
+    </div>
     <div class="field is-grouped">
       <div class="control">
         <%= submit_tag 'Save', class: 'button is-primary', id: 'btn-submit' %>

@@ -1,4 +1,6 @@
 <%= render "layouts/flash" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.3/tagify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.3/tagify.min.js"></script>
 <div class="container is-max-desktop">
   <section class="section">
     <h3 class="title is-3">Write a Review for <%= @apartment.name %></h3>
@@ -27,6 +29,14 @@
       <p class="help is-info is-hidden" id="warning-comment">
         You need ? more words to comment.
       </p>
+    </div>
+    <div class="field">
+      <div class="label">
+        <%= label :comment, :tags, 'Tags', class: 'label' %>
+      </div>
+      <div class="control">
+        <%= text_field :comment, :tags, class: 'input', id: 'input-tags', placeholder: 'Add up to 5 tags less than 10 characters' %>
+      </div>
     </div>
     <div class="field is-grouped">
       <div class="control">

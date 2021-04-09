@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_03_14_012640) do
     t.integer "user_id"
     t.integer "rating"
     t.text "comment"
+    t.string "tags"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
