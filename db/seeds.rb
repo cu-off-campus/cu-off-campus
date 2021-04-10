@@ -55,7 +55,8 @@ comments = Array.new(15) do |i|
     user_id: i + 1,
     apartment_id: rand(1..4),
     rating: rand(50..100),
-    comment: Faker::Lorem.paragraph
+    comment: Faker::Lorem.paragraph,
+    tags: Faker::Lorem.words(number: rand(0..4)).join(",")
   }
 end
 

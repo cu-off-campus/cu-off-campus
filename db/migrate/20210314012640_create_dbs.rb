@@ -16,6 +16,7 @@ class CreateDbs < ActiveRecord::Migration[6.0]
       t.integer "user_id"
       t.integer "rating"
       t.text "comment"
+      t.string "tags"
       t.timestamps
     end
 

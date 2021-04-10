@@ -12,12 +12,12 @@ $(document).ready(function() {
     let comment_word_count = word_count($input_comment.val());
 
     function check_button() {
-        $("#btn-submit").prop("disabled", !(valid_rating && comment_word_count > 50));
+        $("#btn-submit").prop("disabled", !(valid_rating && comment_word_count >= 50));
     }
 
     function check_comment() {
         comment_word_count = word_count($input_comment.val());
-        if (comment_word_count > 50) {
+        if (comment_word_count >= 50) {
             $warning_comment.addClass("is-hidden");
         } else {
             $warning_comment.removeClass("is-hidden");
@@ -42,4 +42,11 @@ $(document).ready(function() {
         check_button();
     });
     $input_comment.on("input", check_comment);
+
+    const tagifyElem = document.querySelector("#input-tags");
+    let tagify = new Tagify(tagifyElem, {
+        pattern: /^[a-zA-Z0-9 \-+$"'?!.#]{2,10}$/,
+        maxTags: 5,
+        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(",")
+    });
 });
