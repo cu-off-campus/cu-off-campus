@@ -123,4 +123,11 @@ describe Comment do
       Apartment.destroy(apartment_id)
     end
   end
+
+  describe 'tags_array' do
+    it 'does tags_array' do
+      comment = Comment.find_by_tags('vel,odit,ratione')
+      expect(comment.tags_array).to eq(['vel', 'odit', 'ratione'])
+    end
+  end
 end
