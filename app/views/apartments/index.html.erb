@@ -6,7 +6,7 @@
     <div class="field is-grouped">
       <div class="control" id="select_sort">
         <div class="select">
-          <select name="sort" id="sort_select_box">
+          <select name="sort" id="sort_select_box" onchange="clickFilterButton()">
             <option <%= 'selected="selected"' if @sort == "" %> style="color: gray" value=""></option>
             <option <%= 'selected="selected"' if @sort == "rating" %> value="rating">Rating</option>
             <option <%= 'selected="selected"' if @sort == "price" %> value="price">Price</option>
@@ -16,7 +16,7 @@
       </div>
       <div class="control" id="select_price">
         <div class="select">
-          <select name="price" id="price_select_box">
+          <select name="price" id="price_select_box" onchange="clickFilterButton()">
             <option <%= 'selected="selected"' if @price == "" %> style="color: gray" value="">All</option>
             <option <%= 'selected="selected"' if @price == "0-999" %> value="0-999">0~999</option>
             <option <%= 'selected="selected"' if @price == "1000-1499" %> value="1000-1499">1000~1499</option>
@@ -40,6 +40,13 @@
     </div>
   <% end %>
 </div>
+
+<script>
+    function clickFilterButton() {
+        document.getElementById('filter_submit').click();
+    }
+</script>
+
 <div class="block">
   <%= render "layouts/flash" %>
 </div>
@@ -60,7 +67,7 @@
               <p class="content"><%= apartment.address %></p>
               <p class="content"><%= text_abstract apartment.description %></p>
               <p>
-                <img src="data:image/jpeg;base64,<%= apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="200px" height="150px" />
+                <img src="data:image/jpeg;base64,<%= apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="200px" height="150px"/>
               </p>
             </div>
           </div>
