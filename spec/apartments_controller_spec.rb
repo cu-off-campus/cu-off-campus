@@ -24,7 +24,7 @@ RSpec.describe ApartmentsController, :type => :controller do
     ap = {
       name: "Apartment 999",
       price: 1200,
-      image: nil,
+      image: "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
       description: "This is apartment 999.",
       address: "3 Apple St"
     }
@@ -64,7 +64,7 @@ RSpec.describe ApartmentsController, :type => :controller do
     ap = {
       name: "Apartment 999",
       price: 1200,
-      image: nil,
+      image: "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
       description: "This is apartment 999.",
       address: "3 Apple St"
     }
@@ -87,6 +87,7 @@ RSpec.describe ApartmentsController, :type => :controller do
 
     Apartment.create!(ap)
     id = Apartment.find_by(ap)[:id]
+
     put :update, params: { id: id, apartment: ap }
     expect(response).to redirect_to apartment_path(Apartment.find id)
 

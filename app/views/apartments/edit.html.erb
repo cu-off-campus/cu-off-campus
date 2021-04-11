@@ -4,7 +4,7 @@
   <h2 class="title is-2">Edit <strong style="color: deepskyblue"><%= @apartment.name %></strong></h2>
 </section>
 
-<%= form_tag apartment_path(@apartment), method: :put do %>
+<%= form_tag apartment_path(@apartment), method: :put, multipart: true do %>
   <div class="field is-horizontal">
     <div class="field-label is-normal">
       <%= label :apartment, :name, 'Name', class: 'label' %>
@@ -63,6 +63,40 @@
       <%= text_area :apartment, :description, class: 'textarea', placeholder: 'Description' %>
     </div>
   </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label :apartment, :image, 'Image', class: 'label' %>
+    </div>
+    <div class="field-body">
+      <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px" id="image_preview"/>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label :apartment, :image, 'Image', class: 'label' %>
+    </div>
+    <div class="field-body">
+      <%= file_field :apartment, :image, accept: "image/jpeg", class: 'input', :onchange => "previewFile()", :id => "upload_image" %>
+    </div>
+  </div>
+
+  <script>
+      function previewFile() {
+          var preview = document.getElementById('image_preview');
+          file = document.getElementById('upload_image').files[0]
+          var reader = new FileReader();
+          reader.addEventListener("load", function () {
+              preview.src = reader.result;
+          }, false);
+
+          if (file) {
+              reader.readAsDataURL(file);
+          }
+      }
+  </script>
+
   <div class="field is-horizontal">
     <div class="field-label">
       <!-- Left empty for spacing -->
