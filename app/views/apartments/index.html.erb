@@ -82,3 +82,16 @@
 <div class="block">
   <%= link_to 'Add new apartment', new_apartment_path, :class => 'button is-primary' %>
 </div>
+
+<script>
+    function imageShow() {
+        var images = document.getElementsByTagName('img')
+        for (let i = 0; i < images.length; i++) {
+            if (images[i].src === "data:image/jpeg;base64,") {
+                images[i].src = "/default.jpeg";
+            }
+        }
+    }
+
+    imageShow();
+</script>

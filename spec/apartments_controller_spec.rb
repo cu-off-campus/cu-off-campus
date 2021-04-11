@@ -60,7 +60,7 @@ RSpec.describe ApartmentsController, :type => :controller do
     expect(response).to redirect_to new_apartment_path
 
     # Image test
-    file = fixture_file_upload("./mytest/mytest.jpg", "image/jpeg")
+    file = fixture_file_upload("./public/mytest.jpg", "image/jpeg")
     post :create, params: {
       apartment: {
         name: "Apartment 9999",
@@ -142,7 +142,7 @@ RSpec.describe ApartmentsController, :type => :controller do
     ap = {
       name: "Apartment 999",
       price: 1200,
-      image: fixture_file_upload("./mytest/mytest.jpg", "image/jpeg"),
+      image: fixture_file_upload("./public/mytest.jpg", "image/jpeg"),
       description: "This is apartment 999.",
       address: "3 Apple St"
     }

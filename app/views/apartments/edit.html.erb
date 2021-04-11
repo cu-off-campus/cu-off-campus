@@ -66,7 +66,7 @@
 
   <div class="field is-horizontal">
     <div class="field-label is-normal">
-      <%= label :apartment, :image, 'Image', class: 'label' %>
+
     </div>
     <div class="field-body">
       <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px" id="image_preview"/>
@@ -78,11 +78,20 @@
       <%= label :apartment, :image, 'Image', class: 'label' %>
     </div>
     <div class="field-body">
-      <%= file_field :apartment, :image, accept: "image/jpeg", class: 'input', :onchange => "previewFile()", :id => "upload_image" %>
+      <%= file_field :apartment, :image, accept: "image/jpeg,image/png", class: 'input', :onchange => "previewFile()", :id => "upload_image" %>
     </div>
   </div>
 
   <script>
+      function imageShow() {
+          var image = document.getElementById('image_preview');
+          if (image.src === "data:image/jpeg;base64,") {
+              image.style.display = 'none';
+          }
+      }
+
+      imageShow();
+
       function previewFile() {
           var preview = document.getElementById('image_preview');
           file = document.getElementById('upload_image').files[0]
@@ -94,6 +103,8 @@
           if (file) {
               reader.readAsDataURL(file);
           }
+
+          imageShow();
       }
   </script>
 
