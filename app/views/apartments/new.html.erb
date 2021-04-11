@@ -4,7 +4,7 @@
   <h3 class="title is-3">Create a New Apartment Record</h3>
 </section>
 
-<%= form_tag apartments_path do %>
+<%= form_tag apartments_path, multipart: true do %>
   <div class="field is-horizontal">
     <div class="field-label is-normal">
       <%= label :apartment, :name, 'Name', class: 'label' %>
@@ -63,6 +63,41 @@
       <%= text_area :apartment, :description, class: 'textarea', placeholder: 'Description', id: 'input-desc' %>
     </div>
   </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+    </div>
+    <div class="field-body">
+      <img src="" style="display:block;margin-left:auto;margin-right:auto;" width="0px" height="0px" id="image_preview"/>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label :apartment, :image, 'Image', class: 'label' %>
+    </div>
+    <div class="field-body">
+      <%= file_field :apartment, :image, accept: "image/jpeg", class: 'input', :onchange => "previewFile()", :id => "upload_image" %>
+    </div>
+  </div>
+
+  <script>
+      function previewFile() {
+          var preview = document.getElementById('image_preview');
+          file = document.getElementById('upload_image').files[0]
+          var reader = new FileReader();
+          reader.addEventListener("load", function () {
+              preview.src = reader.result;
+              preview.style.width = "720px";
+              preview.style.height = "540px";
+          }, false);
+
+          if (file) {
+              reader.readAsDataURL(file);
+          }
+      }
+  </script>
+
   <div class="field is-horizontal">
     <div class="field-label">
       <!-- Left empty for spacing -->

@@ -59,6 +59,9 @@
               <p class="subtitle">$<strong><%= apartment.price %></strong> <span class="small_text">per month</span></p>
               <p class="content"><%= apartment.address %></p>
               <p class="content"><%= text_abstract apartment.description %></p>
+              <p>
+                <img src="data:image/jpeg;base64,<%= apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="200px" height="150px" />
+              </p>
             </div>
           </div>
           <div class="card-footer">

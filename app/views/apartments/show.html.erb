@@ -40,6 +40,11 @@
     </div>
   </article>
 </div>
+
+<div class="block">
+  <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px"/>
+</div>
+
 <div class="block">
   <%= link_to 'Edit Info', edit_apartment_path, class: 'button is-primary' %>
   <%= link_to 'Write a Comment', new_comment_path(apartment_id: @apartment.id), class: 'button is-link' %>
