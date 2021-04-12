@@ -42,10 +42,21 @@
 </div>
 
 <% unless @apartment.image.nil? || @apartment.image.empty? %>
-  <div class="block">
-    <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px" alt="Apartment image"/>
-  </div>
+<div class="block">
+  <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px" id="image" alt="Apartment image"/>
+</div>
 <% end %>
+
+<script>
+    function imageShow() {
+        var image = document.getElementById('image');
+        if (image.src === "data:image/jpeg;base64,") {
+            image.src = "/default.jpeg";
+        }
+    }
+
+    imageShow();
+</script>
 
 <div class="block">
   <%= link_to 'Edit Info', edit_apartment_path, class: 'button is-primary' %>

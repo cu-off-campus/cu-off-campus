@@ -1,5 +1,6 @@
 require './app/helpers/application_helper'
 require "base64"
+
 include ApplicationHelper
 
 class ApartmentsController < ApplicationController
@@ -62,16 +63,16 @@ class ApartmentsController < ApplicationController
 
   def create
     permitted = apartment_params
-    unless validate_aptmt_params permitted
-      flash[:warning] = "Invalid parameters."
-      redirect_to new_apartment_path and return
-    end
 
     # Handle image upload
     unless permitted[:image].nil? || (permitted[:image] == "")
       file_data = permitted[:image]
-      base64_image = Base64.encode64(file_data.read)
-      permitted[:image] = base64_image
+      permitted[:image] = Base64.encode64(file_data.read)
+    end
+
+    unless validate_aptmt_params permitted
+      flash[:warning] = "Invalid parameters."
+      redirect_to new_apartment_path and return
     end
 
     @apartment = Apartment.create!(permitted)
@@ -98,8 +99,7 @@ class ApartmentsController < ApplicationController
     # Handle image upload
     unless permitted[:image].nil? || (permitted[:image] == "")
       file_data = permitted[:image]
-      base64_image = Base64.encode64(file_data.read)
-      permitted[:image] = base64_image
+      permitted[:image] = Base64.encode64(file_data.read)
     end
 
     @apartment.update!(permitted)

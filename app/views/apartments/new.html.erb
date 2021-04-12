@@ -82,6 +82,15 @@
   </div>
 
   <script>
+      function imageShow() {
+          var image = document.getElementById('image_preview');
+          if (image.src === "data:image/jpeg;base64,") {
+              image.style.display = 'none';
+          } else {
+              image.style.display = '';
+          }
+      }
+
       function previewFile() {
           var preview = document.getElementById('image_preview');
           file = document.getElementById('upload_image').files[0]
@@ -95,6 +104,8 @@
           if (file) {
               reader.readAsDataURL(file);
           }
+
+          imageShow();
       }
   </script>
 

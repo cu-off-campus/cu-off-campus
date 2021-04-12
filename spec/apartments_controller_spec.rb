@@ -37,27 +37,40 @@ RSpec.describe ApartmentsController, :type => :controller do
   end
 
   it 'does create' do
-    get :create, params: {
+    post :create, params: {
       apartment: {
-        name: "Apartment 5",
+        name: "Apartment 9999",
         price: 800,
         image: nil,
-        description: "This is apartment 5.",
+        description: "This is apartment 9999.",
         address: "9 Tomato St"
       }
     }
     expect(response).to redirect_to apartments_path
 
-    get :create, params: {
+    post :create, params: {
       apartment: {
-        name: "Apartment 5",
+        name: "Apartment 9999",
         price: "Invalid price",
         image: nil,
-        description: "This is apartment 5.",
+        description: "This is apartment 9999.",
         address: "9 Tomato St"
       }
     }
     expect(response).to redirect_to new_apartment_path
+
+    # Image test
+    file = fixture_file_upload("./public/mytest.jpg", "image/jpeg")
+    post :create, params: {
+      apartment: {
+        name: "Apartment 9999",
+        price: 800,
+        image: file,
+        description: "This is apartment 9999.",
+        address: "9 Tomato St"
+      }
+    }
+    expect(response).to redirect_to apartments_path
   end
 
   it 'does edit' do
@@ -111,6 +124,31 @@ RSpec.describe ApartmentsController, :type => :controller do
     }
     put :update, params: { id: id, apartment: ap }
     expect(response).to redirect_to edit_apartment_path(Apartment.find id)
+
+    Apartment.destroy(id)
+
+    # Image test
+    ap = {
+      name: "Apartment 999",
+      price: 1200,
+      image: nil,
+      description: "This is apartment 999.",
+      address: "3 Apple St"
+    }
+
+    Apartment.create!(ap)
+    id = Apartment.find_by(ap)[:id]
+
+    ap = {
+      name: "Apartment 999",
+      price: 1200,
+      image: fixture_file_upload("./public/mytest.jpg", "image/jpeg"),
+      description: "This is apartment 999.",
+      address: "3 Apple St"
+    }
+
+    put :update, params: { id: id, apartment: ap }
+    expect(response).to redirect_to apartment_path(Apartment.find id)
 
     Apartment.destroy(id)
   end
