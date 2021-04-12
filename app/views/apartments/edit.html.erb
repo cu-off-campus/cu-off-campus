@@ -87,6 +87,9 @@
   <script>
       function imageShow() {
           var image = document.getElementById('image_preview');
+          image.onerror = function () {
+              this.src = "/default.jpeg";
+          }
           if (image.src === "data:image/jpeg;base64,") {
               image.style.display = 'none';
           } else {
@@ -102,13 +105,20 @@
           var reader = new FileReader();
           reader.addEventListener("load", function () {
               preview.src = reader.result;
+              imageShow();
+
+              document.getElementById("btn-save").disabled = false;
+              preview.onerror = function () {
+                  this.src = "data:image/jpeg;base64,";
+                  imageShow();
+                  document.getElementById("btn-save").disabled = true;
+                  alert("Invalid image!");
+              }
           }, false);
 
           if (file) {
               reader.readAsDataURL(file);
           }
-
-          imageShow();
       }
   </script>
 

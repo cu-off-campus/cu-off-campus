@@ -87,6 +87,9 @@
     function imageShow() {
         var images = document.getElementsByTagName('img')
         for (let i = 0; i < images.length; i++) {
+            images[i].onerror = function () {
+                this.src = "/default.jpeg";
+            }
             if (images[i].src === "data:image/jpeg;base64,") {
                 images[i].src = "/default.jpeg";
             }

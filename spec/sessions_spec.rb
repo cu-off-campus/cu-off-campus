@@ -58,7 +58,7 @@ RSpec.describe SessionsController, :type => :controller do
     u.save
 
     post :delete_session
-    expect(response).to redirect_to root_url
+    expect(response).to redirect_to apartments_path
 
     u.destroy
   end

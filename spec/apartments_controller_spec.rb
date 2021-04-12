@@ -83,10 +83,22 @@ RSpec.describe ApartmentsController, :type => :controller do
     }
     Apartment.create!(ap)
     id = Apartment.find_by(ap)[:id]
-    get :edit, params: { id: id }
+
+    user = {
+      username: "test999",
+      password: "test999"
+    }
+
+    u = User.new(**user, password_confirmation: 'nomatch')
+    u.email = "#{user[:username]}@columbia.edu"
+    u.password_confirmation = user[:password]
+    u.save
+
+    get :edit, params: { id: id }, session: { user_id: u.id }
     expect(response.inspect.to_s).to include "Apartment 999"
 
     Apartment.destroy(id)
+    u.destroy
   end
 
   it 'does update' do
