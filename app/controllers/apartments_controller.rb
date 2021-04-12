@@ -53,7 +53,12 @@ class ApartmentsController < ApplicationController
     @apartment = Apartment.find id
   end
 
-  def new; end
+  def new
+    return if session[:user_id]
+
+    flash[:warning] = "You must be signed in to add apartment resources."
+    redirect_back fallback_location: apartments_url
+  end
 
   def create
     permitted = apartment_params
@@ -63,7 +68,7 @@ class ApartmentsController < ApplicationController
     end
 
     # Handle image upload
-    unless permitted[:image].nil? or permitted[:image] == ""
+    unless permitted[:image].nil? || (permitted[:image] == "")
       file_data = permitted[:image]
       base64_image = Base64.encode64(file_data.read)
       permitted[:image] = base64_image
@@ -75,6 +80,10 @@ class ApartmentsController < ApplicationController
   end
 
   def edit
+    unless session[:user_id]
+      flash[:warning] = "You must be signed in to edit apartment resources."
+      redirect_back fallback_location: apartment_path(params[:id]) and return
+    end
     @apartment = Apartment.find params[:id]
   end
 
@@ -87,11 +96,8 @@ class ApartmentsController < ApplicationController
     end
 
     # Handle image upload
-    unless permitted[:image].nil? or permitted[:image] == ""
+    unless permitted[:image].nil? || (permitted[:image] == "")
       file_data = permitted[:image]
-      puts '------------'
-      puts file_data.inspect
-      puts file_data
       base64_image = Base64.encode64(file_data.read)
       permitted[:image] = base64_image
     end

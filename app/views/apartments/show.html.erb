@@ -41,9 +41,11 @@
   </article>
 </div>
 
-<div class="block">
-  <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px"/>
-</div>
+<% unless @apartment.image.nil? || @apartment.image.empty? %>
+  <div class="block">
+    <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px" alt="Apartment image"/>
+  </div>
+<% end %>
 
 <div class="block">
   <%= link_to 'Edit Info', edit_apartment_path, class: 'button is-primary' %>

@@ -65,11 +65,13 @@
   </div>
 
   <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <%= label :apartment, :image, 'Image', class: 'label' %>
-    </div>
+    <div class="field-label is-normal"></div>
     <div class="field-body">
-      <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px" id="image_preview"/>
+      <% if @apartment.image.nil? || @apartment.image.empty? %>
+        <img style="display:block;margin-left:auto;margin-right:auto;" width="0" height="0" id="image_preview"/>
+      <% else %>
+        <img src="data:image/jpeg;base64,<%= @apartment.image %>" style="display:block;margin-left:auto;margin-right:auto;" width="720px" height="540px" id="image_preview"/>
+      <% end %>
     </div>
   </div>
 
