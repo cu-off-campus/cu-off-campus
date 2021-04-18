@@ -42,6 +42,26 @@ RSpec.describe ApartmentsController, :type => :controller do
     Apartment.destroy(id)
   end
 
+  it 'does new' do
+    user = {
+      username: "test999",
+      password: "test999"
+    }
+
+    u = User.new(**user, password_confirmation: 'nomatch')
+    u.email = "#{user[:username]}@columbia.edu"
+    u.password_confirmation = user[:password]
+    u.save
+
+    get :new, session: { user_id: u.id }
+    expect(response).to have_http_status(200)
+
+    u.destroy
+
+    get :new, session: { user_id: nil }
+    expect(response).to redirect_to apartments_path
+  end
+
   it 'does create' do
     post :create, params: {
       apartment: {
@@ -105,6 +125,14 @@ RSpec.describe ApartmentsController, :type => :controller do
 
     Apartment.destroy(id)
     u.destroy
+
+    Apartment.create!(ap)
+    id = Apartment.find_by(ap)[:id]
+
+    get :edit, params: { id: id }, session: { user_id: nil }
+    expect(response).to redirect_to apartment_path(Apartment.find id)
+
+    Apartment.destroy(id)
   end
 
   it 'does update' do
