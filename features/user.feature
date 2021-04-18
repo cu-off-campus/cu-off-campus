@@ -11,6 +11,9 @@ Feature: User login, logout, and registration
     Given the following users exist
       | username | password |
       | user1    | test1    |
+    And   the following apartment data exist
+      | name       | price | image | description  | address     |
+      | Apartment1 | 1500  |       | Apartment 1. | 1 Apple St. |
     Then 1 seed user should exist
 
   Scenario: Register new user
@@ -23,6 +26,7 @@ Feature: User login, logout, and registration
     And  I fill in "input-pw-confirm" with "testpassword"
     And  I click "Submit"
     Then I should be on the listing page
+    And  I should see "Successfully registered"
     And  I should see "Welcome, test"
     And  I should see "Log Out"
 
@@ -52,6 +56,7 @@ Feature: User login, logout, and registration
     And  I fill in "Password" with "test1"
     And  I click "Submit"
     Then I should be on the listing page
+    And  I should see "Successfully logged in"
     And  I should see "Welcome, user1"
 
   Scenario: Fail to log in (the sad path)

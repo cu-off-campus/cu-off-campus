@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
+  # login functionality
   def create_session
     @user = User.find_by(username: login_params[:username])
     if @user&.authenticate(login_params[:password])
       session[:user_id] = @user.id
-      redirect_to root_path and return
+      flash[:notice] = "Successfully logged in."
+      redirect_to apartments_path and return
     end
     flash[:warning] = "Wrong username or password."
     redirect_to login_path
@@ -18,7 +20,8 @@ class SessionsController < ApplicationController
     @user.email = "#{register_params[:username]}@columbia.edu"
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path and return
+      flash[:notice] = "Successfully registered."
+      redirect_to apartments_path and return
     end
     flash[:warning] = "Password does not match."
     redirect_to register_path
