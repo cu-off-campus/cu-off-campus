@@ -8,8 +8,10 @@
         <div class="select">
           <select name="sort" id="sort_select_box" onchange="clickFilterButton()">
             <option <%= 'selected="selected"' if @sort == "" %> style="color: gray" value=""></option>
-            <option <%= 'selected="selected"' if @sort == "rating" %> value="rating">Rating</option>
-            <option <%= 'selected="selected"' if @sort == "price" %> value="price">Price</option>
+            <option <%= 'selected="selected"' if @sort == "rating_desc" %> value="rating_desc">Rating ▼</option>
+            <option <%= 'selected="selected"' if @sort == "rating_asc" %> value="rating_asc">Rating ▲</option>
+            <option <%= 'selected="selected"' if @sort == "price_desc" %> value="price_desc">Price ▼</option>
+            <option <%= 'selected="selected"' if @sort == "price_asc" %> value="price_asc">Price ▲</option>
           </select>
         </div>
         <label class="label">Sort By</label>

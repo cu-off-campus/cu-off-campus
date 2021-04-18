@@ -10,13 +10,19 @@ RSpec.describe ApartmentsController, :type => :controller do
     get :index, params: { commit: nil }
     expect(response).to redirect_to apartments_path
 
-    get :index, params: { search: "Apple", sort: "price", price: "1000-1499" }, session: { sort: "price", price: "1000-1499" }
+    get :index, params: { search: "Apple", sort: "price_asc", price: "1000-1499" }, session: { sort: "price_asc", price: "1000-1499" }
     expect(response.inspect.to_s).to include "Apple"
 
-    get :index, params: { search: "Apple", sort: "price", price: "1000-1499" }, session: { search: "Apple", sort: "price", price: "1000-1499" }
+    get :index, params: { search: "Apple", sort: "price_asc", price: "1000-1499" }, session: { search: "Apple", sort: "price_asc", price: "1000-1499" }
     expect(response.inspect.to_s).to include "Apple"
 
-    get :index, params: { search: "Apple", sort: "rating", price: "1000-1499" }, session: { sort: "rating", price: "1000-1499" }
+    get :index, params: { search: "Apple", sort: "price_desc", price: "1000-1499" }, session: { search: "Apple", sort: "price_desc", price: "1000-1499" }
+    expect(response.inspect.to_s).to include "Apple"
+
+    get :index, params: { search: "Apple", sort: "rating_desc", price: "1000-1499" }, session: { sort: "rating_desc", price: "1000-1499" }
+    expect(response.inspect.to_s).to include "Apple"
+
+    get :index, params: { search: "Apple", sort: "rating_asc", price: "1000-1499" }, session: { sort: "rating_asc", price: "1000-1499" }
     expect(response.inspect.to_s).to include "Apple"
   end
 

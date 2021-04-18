@@ -26,10 +26,14 @@ class ApartmentsController < ApplicationController
     end
 
     ordering = case @sort
-               when 'rating'
+               when 'rating_desc'
                  { rating: :desc }
-               when 'price'
+               when 'rating_asc'
+                 { rating: :asc }
+               when 'price_desc'
                  { price: :desc }
+               when 'price_asc'
+                 { price: :asc }
                end
     price_range = nil
     unless @price.nil?

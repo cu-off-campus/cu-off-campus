@@ -7,12 +7,12 @@ Feature: Listing and filtering apartment listing
   Background: apartment, user, comments data have been added to database
 
     Given the following apartment data exist
-      | name       | price | image                          | description  | address         |
-      | Apartment1 | 1500  | https://some.image.com/ap1.jpg | Apartment 1. | 1 Apple St.     |
-      | Apartment2 | 2000  |                                | Apartment 2. | 2 Apple St.     |
-      | Apartment3 | 2500  |                                | Apartment 3! | 3 Banana St.    |
-      | Apartment4 | 3000  | https://some.image.com/ap4.jpg | Apartment 4. | 4 Canal St.     |
-      | Apartment5 | 3500  |                                | Apartment 5. | 5 Lafayette St. |
+      | name       | price | image | description  | address         |
+      | Apartment1 | 1500  |       | Apartment 1. | 1 Apple St.     |
+      | Apartment2 | 2000  |       | Apartment 2. | 2 Apple St.     |
+      | Apartment3 | 2500  |       | Apartment 3! | 3 Banana St.    |
+      | Apartment4 | 3000  |       | Apartment 4. | 4 Canal St.     |
+      | Apartment5 | 3500  |       | Apartment 5. | 5 Lafayette St. |
 
     And the following users exist
       | username | password |
@@ -36,7 +36,15 @@ Feature: Listing and filtering apartment listing
 
   Scenario: Sort apartment by price and clearing filter
     When I am on the listing page
-    And  I select "Price" from "sort_select_box"
+    And  I select "Price ▲" from "sort_select_box"
+    And  I click "Filter"
+    Then I should see the following in order
+      | Apartment1 |
+      | Apartment2 |
+      | Apartment3 |
+      | Apartment4 |
+      | Apartment5 |
+    When I select "Price ▼" from "sort_select_box"
     And  I click "Filter"
     Then I should see the following in order
       | Apartment5 |
@@ -62,7 +70,7 @@ Feature: Listing and filtering apartment listing
   Scenario: Sort apartment by rating
     When I am on the listing page
     And  I click "clear_filter_submit"
-    And  I select "Rating" from "sort_select_box"
+    And  I select "Rating ▼" from "sort_select_box"
     And  I click "Filter"
     Then I should see the following in order
       | Apartment5 |
@@ -70,6 +78,14 @@ Feature: Listing and filtering apartment listing
       | Apartment1 |
       | Apartment2 |
       | Apartment4 |
+    When I select "Rating ▲" from "sort_select_box"
+    And  I click "Filter"
+    Then I should see the following in order
+      | Apartment4 |
+      | Apartment2 |
+      | Apartment1 |
+      | Apartment3 |
+      | Apartment5 |
 
   Scenario: Filter apartment by price range
     When I am on the listing page
