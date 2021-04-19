@@ -66,3 +66,10 @@ Feature: User login, logout, and registration
     And  I click "Submit"
     Then I should be on the login page
     And  I should see "Wrong username or password."
+
+  Scenario: Log out
+    When I am logged in as "user1" with password "test1"
+    And  I am on the home page
+    And  I click "Log Out"
+    Then I should be on the listing page
+    And  I should see "Successfully logged out"

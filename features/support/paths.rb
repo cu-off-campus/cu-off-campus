@@ -8,7 +8,7 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the main page$/ then '/'
+    when /^the (main|home) page$/ then '/'
     when /^the listing page$/ then '/apartments'
     when /^the details page for "(.+)"$/ then "/apartments/#{Apartment.find_by(name: $1).id}"
     when /^the editing page for "(.+)"$/ then "/apartments/#{Apartment.find_by(name: $1).id}/edit"

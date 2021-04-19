@@ -13,7 +13,7 @@ RSpec.describe SessionsController, :type => :controller do
     u.save
 
     post :create_session, params: { user: { username: 'test999', password: 'test999' } }
-    expect(response).to redirect_to root_path
+    expect(response).to redirect_to apartments_path
 
     post :create_session, params: { user: { username: 'test999', password: 'test2' } }
     expect(response).to redirect_to login_path
@@ -38,7 +38,7 @@ RSpec.describe SessionsController, :type => :controller do
     u.destroy
 
     post :create_user, params: { user: { username: 'test999', password: 'test999', password_confirmation: 'test999' } }
-    expect(response).to redirect_to root_path
+    expect(response).to redirect_to apartments_path
 
     User.where(username: "test999").destroy_all
 

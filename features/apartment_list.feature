@@ -23,12 +23,12 @@ Feature: Listing and filtering apartment listing
       | user5    | test5    |
 
     And the following comments exist
-      | apartment_id | user_id | rating | comment   |
-      | 1            | 1       | 80     | Good      |
-      | 2            | 2       | 75     | OK        |
-      | 3            | 3       | 85     | Great     |
-      | 4            | 4       | 68     | Not good  |
-      | 5            | 5       | 99     | Very good |
+      | apartment_id | user_id | rating | comment   | tags  |
+      | 1            | 1       | 80     | Good      | 5UA   |
+      | 2            | 2       | 75     | OK        | 5VY   |
+      | 3            | 3       | 85     | Great     | 5W,5X |
+      | 4            | 4       | 68     | Not good  | 5YM   |
+      | 5            | 5       | 99     | Very good | 5ZJ   |
 
     Then 5 seed apartments should exist
     And  5 seed users should exist
@@ -52,7 +52,7 @@ Feature: Listing and filtering apartment listing
       | Apartment3 |
       | Apartment2 |
       | Apartment1 |
-    When I click "Home"
+    When I click "Listing"
     Then I should see the following in order
       | Apartment5 |
       | Apartment4 |
@@ -93,8 +93,12 @@ Feature: Listing and filtering apartment listing
     And  I click "Filter"
     Then I should see "Apartment1"
     And  I should not see "Apartment2"
+    When I select "2000+" from "price_select_box"
+    And  I click "Filter"
+    Then I should see "Apartment2"
+    And  I should not see "Apartment1"
 
-  Scenario: Search apartments
+  Scenario: Search apartments by name and address
     When I am on the listing page
     And  I fill in "search_input" with "Apple"
     And  I click "Filter"
@@ -105,6 +109,23 @@ Feature: Listing and filtering apartment listing
     And  I click "Filter"
     Then I should see "Apartment5"
     And  I should not see "Apartment2"
+
+  Scenario: Search apartments by comments and tags
+    When I am on the listing page
+    And  I fill in "search_input" with "Very good"
+    And  I click "Filter"
+    Then I should see "Apartment5"
+    And  I should not see "Apartment1"
+    And  I should not see "Apartment2"
+    And  I should not see "Apartment3"
+    And  I should not see "Apartment4"
+    When I fill in "search_input" with "5YM"
+    And  I click "Filter"
+    Then I should see "Apartment4"
+    And  I should not see "Apartment1"
+    And  I should not see "Apartment2"
+    And  I should not see "Apartment3"
+    And  I should not see "Apartment5"
 
   Scenario: Unable to find any search results (the sad path)
     When I am on the listing page
