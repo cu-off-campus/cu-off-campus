@@ -27,11 +27,26 @@ describe Apartment do
 
       query = 'o'
       price_range = nil
-      expect(Apartment.filter(query, price_range)).to eq(Apartment.where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", '%o%', '%o%'))
+
+      t = Apartment.where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", "%o%", "%o%")
+      c = Comment.where("(LOWER(comment) LIKE ?) OR (LOWER(tags) LIKE ?)", "%o%", "%o%")
+      apartment_id_list = c.pluck(:apartment_id)
+      t2 = Apartment.where(id: apartment_id_list)
+      ids = t.pluck(:id) + t2.pluck(:id)
+      t = Apartment.where(id: ids.uniq)
+      expect(Apartment.filter(query, price_range).order("id ASC")).to eq(t.order("id ASC"))
 
       query = 'apple'
       price_range = [1000, 1499]
-      expect(Apartment.filter(query, price_range)).to eq(Apartment.where(price: (1000..1499)).where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", '%apple%', '%apple%'))
+
+      t = Apartment.where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", "%apple%", "%apple%")
+      c = Comment.where("(LOWER(comment) LIKE ?) OR (LOWER(tags) LIKE ?)", "%apple%", "%apple%")
+      apartment_id_list = c.pluck(:apartment_id)
+      t2 = Apartment.where(id: apartment_id_list)
+      ids = t.pluck(:id) + t2.pluck(:id)
+      t = Apartment.where(id: ids.uniq)
+
+      expect(Apartment.filter(query, price_range).order("id ASC").pluck(:id)).to eq(t.where(price: (1000..1499)).order("id ASC").pluck(:id))
     end
   end
 

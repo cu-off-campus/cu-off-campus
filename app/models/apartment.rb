@@ -1,9 +1,17 @@
 class Apartment < ActiveRecord::Base
   def self.filter(query, price_range)
     t = with_price_range(price_range)
+    c = Comment.all
     unless query.nil? || query.empty?
       query = "%#{query.downcase}%"
       t = t.where("(LOWER(address) LIKE ?) OR (LOWER(name) LIKE ?)", query, query)
+
+      c = Comment.where("(LOWER(comment) LIKE ?) OR (LOWER(tags) LIKE ?)", query, query)
+      apartment_id_list = c.pluck(:apartment_id)
+      t2 = Apartment.where(id: apartment_id_list)
+
+      ids = t.pluck(:id) + t2.pluck(:id)
+      t = Apartment.where(id: ids.uniq)
     end
     t
   end
