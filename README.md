@@ -22,6 +22,26 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 - Branch: `iter-2-blocker`
 - Heroku: https://fierce-ravine-62859.herokuapp.com
 
+### Launch
+
+- Tag: `proj-launch`
+- Branch: `launch-blocker`
+- Heroku: https://infinite-crag-74624.herokuapp.com/
+
+Progress based on the TA’s grading comments of proj-iter2
+
+1. **Comment: Sort by should have the option to go ascending or descending**
+
+   Sorting of both ascending and descending is added.
+
+2. **Comment: More functionality in search could be useful**
+
+   Search can now search apartments, comment descriptions, and comment tags, instead of only apartments in proj-iter2.
+
+3. **Comment: Sorts should happen automatically, without having to click Filter.**
+
+   Sorting takes effect immediately when making a selection, not need to click Filter button any more.
+
 ## Links
 
 - Github: https://github.com/cu-off-campus/cu-off-campus
@@ -30,6 +50,8 @@ CU Off-Campus is an apartment search platform created exclusively for Columbia s
 
 - Apartment listing with sorting and searching functionalities
 - Edit and create apartment information
+- Comments with tags
+- User registration, log in and log out functionalities
 
 ## Instructions
 
